@@ -13,7 +13,7 @@ app.use(express.json());
 app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
-
+app.post('/employees/created', employees.createEmployee);
 app.delete('/employees/delete/:id', employees.deleteEmployeeId);
 app.put('/employees/put/:id', employees.putEmployeeId);
 app.get('/admins', (req, res) => {
