@@ -1,5 +1,6 @@
 // use "import" to import libraries
 import express from 'express';
+import timesheetRouter from './resources/time-sheets';
 
 // use "require" to import JSON files
 const admins = require('./data/admins.json');
@@ -18,6 +19,8 @@ app.get('/admins', (req, res) => {
     data: admins,
   });
 });
+
+app.use('/time-sheets', timesheetRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

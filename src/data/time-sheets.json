@@ -1,0 +1,81 @@
+[{
+    "id": "edusting0@blogs.com",
+    "day": "monday",
+    "workedHours": 6,
+    "project": "Waelchi, Flatley and Kessler",
+    "task": "Major Chemicals",
+    "check": false,
+    "manager": "Ethan Dusting"
+  }, {
+    "id": "kdodgson1@tiny.cc",
+    "day": "sunday",
+    "workedHours": 2,
+    "project": "Stark and Sons",
+    "task": "Other Specialty Stores",
+    "check": false,
+    "manager": "Kelsy Dodgson"
+  }, {
+    "id": "fcoggon2@yahoo.co.jp",
+    "day": "thursday",
+    "workedHours": 6,
+    "project": "Simonis, Reinger and Muller",
+    "task": "n/a",
+    "check": true,
+    "manager": "Frayda Coggon"
+  }, {
+    "id": "dgirvin3@github.io",
+    "day": "tuesday",
+    "workedHours": 4,
+    "project": "Tromp, Bernier and Franecki",
+    "task": "n/a",
+    "check": false,
+    "manager": "Darnall Girvin"
+  }, {
+    "id": "tsummerhayes4@yandex.ru",
+    "day": "friday",
+    "workedHours": 5,
+    "project": "Thiel LLC",
+    "task": "Catalog/Specialty Distribution",
+    "check": true,
+    "manager": "Tildie Summerhayes"
+  }, {
+    "id": "opaquet5@ovh.net",
+    "day": "friday",
+    "workedHours": 6,
+    "project": "Jacobs-Kunze",
+    "task": "n/a",
+    "check": false,
+    "manager": "Omar Paquet"
+  }, {
+    "id": "jgowar6@livejournal.com",
+    "day": "monday",
+    "workedHours": 7,
+    "project": "Ankunding-Brown",
+    "task": "Trucking Freight/Courier Services",
+    "check": true,
+    "manager": "Jewelle Gowar"
+  }, {
+    "id": "mmilthorpe7@statcounter.com",
+    "day": "wednesday",
+    "workedHours": 5,
+    "project": "Jaskolski-Kshlerin",
+    "task": "Real Estate Investment Trusts",
+    "check": true,
+    "manager": "Mylo Milthorpe"
+  }, {
+    "id": "tprint8@msu.edu",
+    "day": "friday",
+    "workedHours": 8,
+    "project": "Mills, Stracke and Lynch",
+    "task": "Biotechnology: Commercial Physical & Biological Resarch",
+    "check": true,
+    "manager": "Tana Print"
+  }, {
+    "id": "talyutin9@slate.com",
+    "day": "monday",
+    "workedHours": 8,
+    "project": "Auer Group",
+    "task": "Savings Institutions",
+    "check": true,
+    "manager": "Trip Alyutin"
+  }]
