@@ -1,5 +1,8 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 const express = require('express');
+const res = require('express/lib/response');
 
 const router = express.Router();
 const admins = require('../data/admins.json');
@@ -39,12 +42,23 @@ router.put('/:id', (req, res) => {
 router.get('/', (req, res) => res.status(200).json(admins));
 
 // Get single admin
-router.get('/id=:id', (req, res) => {
+// By Id
+router.get('/id/:id', (req, res) => {
   const found = admins.some((admin) => admin.id === Number(req.params.id));
   if (found) {
     res.json(admins.filter((admin) => admin.id === Number(req.params.id)));
   } else {
     res.status(400).json({ msg: `No admins with the id of ${req.params.id}` });
+  }
+});
+
+// By name
+router.get('/name/:firstName', (req, res) => {
+  const adminName = admins.some((admin) => admin.firstName === String(req.params.firstName));
+  if (adminName) {
+    res.json(admins.filter((admin) => admin.firstName === String(req.params.firstName)));
+  } else {
+    res.status(400).json({ msg: `No admins with the name of ${req.params.firstName}` });
   }
 });
 
