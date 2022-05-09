@@ -8,16 +8,16 @@ router.get('/getAll', (req, res) => {
   res.send(employees);
 });
 
-// // get employee by id
-// router.get('/getById/:id', (req, res) => {
-//   const employeeId = req.params.id;
-//   const employee = employees.find((employee) => employee.id === employeeId);
-//   if (employee) {
-//     res.send(employee);
-//   } else {
-//     res.send('Employee not found');
-//   }
-// });
+// get employee by id
+router.get('/getById/:id', (req, res) => {
+  const employeeId = req.params.id;
+  const employee = employees.find((e) => e.id === employeeId);
+  if (employee) {
+    res.send(employee);
+  } else {
+    res.send('Employee not found');
+  }
+});
 
 // filter employees by status
 router.get('/getbyStatus', (req, res) => {

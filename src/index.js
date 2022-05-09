@@ -7,6 +7,7 @@ const admins = require('./data/admins.json');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// import router
 const employeeRouter = require('./resources/employees');
 
 app.use(express.json());
