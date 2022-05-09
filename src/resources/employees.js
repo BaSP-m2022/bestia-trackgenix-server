@@ -1,33 +1,31 @@
-const express = require('express');
 const employees = require('../data/employees.json');
 
-const router = express.Router();
+function getAll(req, res) {
+  res.status(200).json(employees);
+}
 
-// get all employees
-router.get('/getAll', (req, res) => {
-  res.send(employees);
-});
-
-// get employee by id
-router.get('/getById/:id', (req, res) => {
-  const employeeId = req.params.id;
-  const employee = employees.find((e) => e.id === employeeId);
+function getEmployeeById(req, res) {
+  const { id } = req.params;
+  const employee = employees.find((e) => e.id === id);
   if (employee) {
-    res.send(employee);
+    res.status(200).json(employee);
   } else {
-    res.send('Employee not found');
+    res.status(404).json({ msg: 'Employee not found.' });
   }
-});
+}
 
-// filter employees by status
-router.get('/getbyStatus', (req, res) => {
-  const employeeStatus = req.query.active;
-  const filteredEmployees = employees.filter((employee) => employee.active === employeeStatus);
-  if (filteredEmployees.length > 0) {
-    res.send(filteredEmployees);
+function filterByStatus(req, res) {
+  const status = req.query.active;
+  const active = employees.filter((e) => e.active.toString() === status);
+  if (active.length > 0) {
+    res.status(200).json(active);
   } else {
-    res.send('Employee not found');
+    res.status(404).json({ msg: 'Employees not found.' });
   }
-});
+}
 
-module.exports = router;
+module.exports = {
+  getAll,
+  getEmployeeById,
+  filterByStatus,
+};
