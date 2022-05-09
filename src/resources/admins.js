@@ -1,7 +1,39 @@
+/* eslint-disable no-param-reassign */
 const express = require('express');
 
 const router = express.Router();
 const admins = require('../data/admins.json');
+
+// Create admin
+router.post('/', (req, res) => {
+  const rb = req.body;
+  if (!rb.id || !rb.firstName || !rb.lastName || !rb.email || !rb.password || !rb.active) {
+    res.status(400).json({ msg: 'Please include the solicited information' });
+  }
+  admins.push(req.body);
+  res.json(admins);
+});
+
+// Update admin
+router.put('/:id', (req, res) => {
+  const found = admins.some((admin) => admin.id === Number(req.params.id));
+  if (found) {
+    const updAdmin = req.body;
+    admins.forEach((admin) => {
+      if (admin.id === Number(req.params.id)) {
+        admin.firstName = updAdmin.firstName ? updAdmin.firstName : admin.firstName;
+        admin.lastName = updAdmin.lastName ? updAdmin.lastName : admin.lastName;
+        admin.email = updAdmin.email ? updAdmin.email : admin.email;
+        admin.password = updAdmin.password ? updAdmin.password : admin.password;
+        admin.active = updAdmin.active ? updAdmin.active : admin.active;
+
+        res.json({ msg: 'Admin updated', admin });
+      }
+    });
+  } else {
+    res.status(400).json({ msg: `No admins with the id of ${req.params.id}` });
+  }
+});
 
 // Get all admins
 router.get('/', (req, res) => res.status(200).json(admins));
@@ -14,16 +46,6 @@ router.get('/id=:id', (req, res) => {
   } else {
     res.status(400).json({ msg: `No admins with the id of ${req.params.id}` });
   }
-});
-
-// Create admin
-router.post('/', (req, res) => {
-  const rb = req.body;
-  if (!rb.id || !rb.firstName || !rb.lastName || !rb.email || !rb.password || !rb.active) {
-    res.status(400).json({ msg: 'Please include the solicited information' });
-  }
-  admins.push(req.body);
-  res.json(admins);
 });
 
 // Delete admin
