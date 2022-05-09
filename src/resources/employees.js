@@ -24,8 +24,19 @@ function filterByStatus(req, res) {
   }
 }
 
+function filterByLName(req, res) {
+  const lName = req.query.lastName;
+  const lastName = employees.filter((e) => e.lastName.toString() === lName);
+  if (lastName.length > 0) {
+    res.status(200).json(lastName);
+  } else {
+    res.status(404).json({ msg: 'Employees not found.' });
+  }
+}
+
 module.exports = {
   getAll,
   getEmployeeById,
   filterByStatus,
+  filterByLName,
 };

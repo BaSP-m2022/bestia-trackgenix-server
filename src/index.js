@@ -22,6 +22,7 @@ app.get('/admins', (req, res) => {
 
 app.get('/employees/getById/:id', employees.getEmployeeById);
 app.get('/employees/filterByStatus', employees.filterByStatus);
+app.get('/employees/filterByLastName', employees.filterByLName);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
