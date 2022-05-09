@@ -28,6 +28,35 @@ router.post('/add', (req, res) => {
   }
 });
 
-// PUT METHOD
+// DELETE METHOD
+
+router.delete('/delete/:id', (req, res) => {
+  const timesheetId = req.params.id;
+  const filteredTimesheets = timesheets.filter((f) => f.id !== timesheetId);
+  if (timesheets.length === filteredTimesheets.length) {
+    res.send('could not delate user because does not exist');
+  } else {
+    fs.writeFile('src/data/time-sheets.json', JSON.stringify(filteredTimesheets), (error) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send('Timesheet deleted');
+      }
+    });
+  }
+});
+
+// GET METHOD
+
+router.get('/getById/:id', (req, res) => {
+  const timesheetId = req.params.id;
+  // eslint-disable-next-line no-shadow
+  const getById = timesheets.find((getById) => getById.id === timesheetId);
+  if (getById) {
+    res.send(getById);
+  } else {
+    res.send('Timesheet not found');
+  }
+});
 
 export default router;
