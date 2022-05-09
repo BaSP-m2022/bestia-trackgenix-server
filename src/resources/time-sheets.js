@@ -59,4 +59,36 @@ router.get('/getById/:id', (req, res) => {
   }
 });
 
+// PUT METHOD
+
+router.put('/updated/:id', (req, res) => {
+  const timesheetId = req.params.id;
+  const id = timesheets.find((u) => u.id === timesheetId);
+  if (id) {
+    const updatedId = req.body;
+    const newTimesheet = {};
+    newTimesheet.id = timesheetId;
+    newTimesheet.description = updatedId.description ? updatedId.description : id.description;
+    newTimesheet.day = updatedId.day ? updatedId.day : id.day;
+    newTimesheet.role = updatedId.role ? updatedId.role : id.role;
+    newTimesheet.project = updatedId.project ? updatedId.project : id.project;
+    newTimesheet.task = updatedId.task ? updatedId.task : id.task;
+    newTimesheet.validated = updatedId.validated ? updatedId.validated : id.validated;
+    newTimesheet.projectId = updatedId.projectId ? updatedId.projectId : id.projectId;
+    // eslint-disable-next-line max-len
+    newTimesheet.projectManager = updatedId.projectManager ? updatedId.projectManager : id.projectManager;
+    const newUpdatedId = timesheets.filter((p) => p.id !== timesheetId);
+    newUpdatedId.push(newTimesheet);
+    fs.writeFile('src/data/time-sheets.json', JSON.stringify(newUpdatedId), (error) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send('Timesheet updated');
+      }
+    });
+  } else {
+    res.send('Timesheet not found');
+  }
+});
+
 export default router;
