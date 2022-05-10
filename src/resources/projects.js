@@ -59,7 +59,7 @@ router.put('/edit/:id', (req, res) => {
     const updProject = req.body;
     projects.forEach((pr) => {
       const pr2 = pr;
-      if (pr.id === projectId) {
+      if (pr2.id === projectId) {
         pr2.id = updProject.id ? updProject.id : pr2.id;
         pr2.name = updProject.name ? updProject.name : pr2.name;
         pr2.startDate = updProject.startDate ? updProject.startDate : pr2.startDate;
@@ -67,11 +67,43 @@ router.put('/edit/:id', (req, res) => {
         pr2.clientName = updProject.clientName ? updProject.clientName : pr2.clientName;
         pr2.active = updProject.active ? updProject.active : pr2.active;
         pr2.employees = updProject.employees ? updProject.employees : pr2.employees;
-        res.json({ msg: 'Project updated', pr });
+        pr2.role = updProject.role ? updProject.role : pr2.role;
+        fs.writeFile('./src/data/projects.json', JSON.stringify(projects), (err) => {
+          if (err) {
+            res.send(err);
+          } else {
+            res.json({ msg: 'Project Updated', pr2 });
+          }
+        });
       }
     });
   } else {
     res.status(400).json({ msg: `No projects with the id of "${projectId}"` });
+  }
+});
+
+// Assign an Employee to a Project with a role (QA, PM, DEV, TL):
+
+router.post('/assignEmployee/:id', (req, res) => {
+  const projectId = req.params.id;
+  const found = projects.some((p) => p.id === projectId);
+  if (found) {
+    const assingEmployee = req.body;
+    projects.forEach((e) => {
+      if (e.id === projectId) {
+        const employee = { employeeId: assingEmployee.employeeId, role: assingEmployee.role };
+        e.employees.push(employee);
+        fs.writeFile('./src/data/projects.json', JSON.stringify(projects), (err) => {
+          if (err) {
+            res.send(err);
+          } else {
+            res.json({ msg: 'Employee role updated', e });
+          }
+        });
+      }
+    });
+  } else {
+    res.status(400).json({ msg: `Employee not found with the id: "${projectId}"` });
   }
 });
 
