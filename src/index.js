@@ -23,3 +23,7 @@ app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });
+
+const tasksRouter = require('./resources/tasks');
+
+app.use('/tasks', tasksRouter);
