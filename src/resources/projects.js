@@ -18,18 +18,6 @@ router.get('/getById/:id', (req, res) => {
   }
 });
 
-router.post('/Add', (req, res) => {
-  const projectData = req.body;
-  projects.push(projectData);
-  fs.writeFile('./src/data/projects.json', JSON.stringify(projects), (err) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send('Project added');
-    }
-  });
-});
-
 /* router.put('/:id', (req, res) => {
   const found = projects.some((p) => p.id === String(req.params.id));
   if (found) {
