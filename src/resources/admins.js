@@ -41,7 +41,7 @@ router.put('/:id', (req, res) => {
 // Get all admins
 router.get('/', (req, res) => res.status(200).json(admins));
 
-// Get single admin
+// Get single admin:
 // By Id
 router.get('/id/:id', (req, res) => {
   const found = admins.some((admin) => admin.id === Number(req.params.id));
@@ -59,6 +59,26 @@ router.get('/name/:firstName', (req, res) => {
     res.json(admins.filter((admin) => admin.firstName === String(req.params.firstName)));
   } else {
     res.status(400).json({ msg: `No admins with the name of ${req.params.firstName}` });
+  }
+});
+
+// By lastName
+router.get('/lastName=:lastName', (req, res) => {
+  const found = admins.some((admin) => admin.lastName === req.params.lastName);
+  if (found) {
+    res.json(admins.filter((admin) => admin.lastName === req.params.lastName));
+  } else {
+    res.status(400).json({ msg: `No admins with the lastName of ${req.params.lastName}` });
+  }
+});
+
+// By active status
+router.get('/active=:active', (req, res) => {
+  const listOfActives = admins.filter((admin) => (admin.active.toString() === req.params.active));
+  if (req.params.active === 'true' || req.params.active === 'false') {
+    res.json(listOfActives);
+  } else {
+    res.status(400).json({ msg: `No admins with the active of ${req.params.active}` });
   }
 });
 
