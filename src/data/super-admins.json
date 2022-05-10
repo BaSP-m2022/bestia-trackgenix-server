@@ -1,0 +1,24 @@
+[
+    {
+    "id": 1,
+    "firstName": "Alair",
+    "lastName": "Vaggers",
+    "email": "avaggers0@baidu.com",
+    "password": "LmAt8EsOR",
+    "active": true
+    }, {
+    "id": 2,
+    "firstName": "Jeniffer",
+    "lastName": "Font",
+    "email": "jfont1@marketwatch.com",
+    "password": "kHHxRjxN4A7",
+    "active": true
+    }, {
+    "id": 3,
+    "firstName": "Wernher",
+    "lastName": "Glozman",
+    "email": "wglozman2@360.cn",
+    "password": "CMe7yaxodRW",
+    "active": false
+    }
+]
