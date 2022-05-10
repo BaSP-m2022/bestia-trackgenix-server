@@ -7,7 +7,16 @@
         "endDate": "2-1-2022",
         "clientName": "Felis silvestris lybica",
         "state": "finished",
-        "employees": ["66", "95", "64"]
+        "employees": [
+            {
+                "employeeId": 5,
+                "role": "DEV"
+            },
+            {
+                "employeeId": 2,
+                "role": "DEV"
+            }
+        ]
     }, {
         "id": "2",
         "name": "Lotstring",
@@ -16,7 +25,20 @@
         "endDate": "12-23-2021",
         "clientName": "Pytilia melba",
         "state": "finished",
-        "employees": ["47", "44", "5", "20"]
+        "employees": [
+            {
+                "employeeId": 1,
+                "role": "DEV"
+            },
+            {
+                "employeeId": 4,
+                "role": "DEV"
+            },
+            {
+                "employeeId": 2,
+                "role": "DEV"
+            }
+        ]
     }, {
         "id": "3",
         "name": "Wrapsafe",
@@ -25,7 +47,17 @@
         "endDate": "7-24-2021",
         "clientName": "Anhinga rufa",
         "state": "finished",
-        "employees": ["77", "69"]
+        "employees": [
+            {
+                "employeeId": 4,
+                "role": "DEV"
+            },
+            {
+                "employeeId": 5,
+                "role": "DEV"
+            }
+        ],
+        "role": ""
     }, {
         "id": "4",
         "name": "Asoka",
@@ -34,7 +66,16 @@
         "endDate": "6-2-2021",
         "clientName": "Vulpes cinereoargenteus",
         "state": "active",
-        "employees": ["87", "23", "95"]
+        "employees":[
+            {
+                "employeeId": 3,
+                "role": "DEV"
+            },
+            {
+                "employeeId": 4,
+                "role": "DEV"
+            }
+        ]
     }, {
         "id": "5",
         "name": "Regrant",
@@ -43,6 +84,19 @@
         "endDate": "6-2-2021",
         "clientName": "Fulica cristata",
         "state": "active",
-        "employees": ["47", "23"]
+        "employees":[
+            {
+                "employeeId": 1,
+                "role": "DEV"
+            },
+            {
+                "employeeId": 4,
+                "role": "DEV"
+            },
+            {
+                "employeeId": 2,
+                "role": "DEV"
+            }
+        ]
     }
 ]

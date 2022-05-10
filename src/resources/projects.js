@@ -5,24 +5,7 @@ const router = express.Router();
 
 const projects = require('../data/projects.json');
 
-// Obtain all projects:
-router.get('/getAll', (req, res) => {
-  res.send(projects);
-});
-
-// Obtain a project by ID:
-router.get('/getById/:id', (req, res) => {
-  const projectId = req.params.id;
-  const projectSearch = projects.find((projectFind) => projectFind.id === projectId);
-  if (projectSearch) {
-    res.send(projectSearch);
-  } else {
-    res.send('Project not found');
-  }
-});
-
 // Create a project:
-
 router.post('/add', (req, res) => {
   const projectData = req.body;
   if (projectData.id
@@ -43,43 +26,6 @@ router.post('/add', (req, res) => {
     });
   } else {
     res.send('You need to fill all the fields');
-  }
-});
-
-/* router.post('/add', (req, res) => {
-  const projectData = req.body;
-  if (projectData.id) {
-    projects.push(projectData);
-    fs.writeFile('./src/data/projects.json', JSON.stringify(projects), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Project added');
-      }
-    });
-  }
-}); */
-
-// Edit a project:
-router.put('/edit/:id', (req, res) => {
-  const projectId = req.params.id;
-  const found = projects.some((p) => p.id === projectId);
-  if (found) {
-    const updProject = req.body;
-    projects.forEach((p) => {
-      if (p.id === projectId) {
-        projects.id = updProject.id ? updProject.id : p.id;
-        projects.name = updProject.name ? updProject.name : p.name;
-        projects.startDate = updProject.startDate ? updProject.startDate : p.startDate;
-        projects.endDate = updProject.endDate ? updProject.endDate : p.endDate;
-        projects.clientName = updProject.clientName ? updProject.clientName : p.clientName;
-        projects.status = updProject.status ? updProject.status : p.status;
-        projects.employees = updProject.employees ? updProject.employees : p.employees;
-        res.json({ msg: 'Project updated', p });
-      }
-    });
-  } else {
-    res.status(400).json({ msg: `No projects with the id of "${projectId}"` });
   }
 });
 
@@ -156,42 +102,4 @@ router.get('/getByState/:state', (req, res) => {
   }
 });
 
-// Assign an Employee to a Project with a role (QA, PM, DEV, TL):
-router.post('/assignEmployee/:id', (req, res) => {
-  const projectId = req.params.id;
-  const found = projects.some((p) => p.id === projectId);
-  if (found) {
-    const updEmployee = req.body;
-    projects.forEach((e) => {
-      if (e.id === projectId) {
-        e.qa = updEmployee.qa ? updEmployee.qa : e.qa;
-        e.pm = updEmployee.pm ? updEmployee.pm : e.pm;
-        e.dev = updEmployee.dev ? updEmployee.dev : e.dev;
-        e.tl = updEmployee.tl ? updEmployee.tl : e.tl;
-        fs.writeFile('src/data/projects.json', JSON.stringify(updEmployee), (err) => {
-          if (err) {
-            res.send(err);
-          } else {
-            res.json({ msg: 'Employee role updated', e });
-          }
-        });
-      }
-    });
-  } else {
-    res.status(400).json({ msg: `Employee not found with the id: "${projectId}"` });
-  }
-});
-
 module.exports = router;
-
-/* if (projects.includes(projectId.value)) {
-    res.send('Error. We could not find the project'); */
-
-/* res.status(404).json({
-    msg: 'The project with ID ${id} does not exist',
-});
-
-res.status(200).json({
-    data: project,
-});
- */
