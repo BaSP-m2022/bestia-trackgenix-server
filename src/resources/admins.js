@@ -4,6 +4,8 @@
 const express = require('express');
 const res = require('express/lib/response');
 
+const fs = require('fs');
+
 const router = express.Router();
 const admins = require('../data/admins.json');
 
@@ -14,23 +16,60 @@ router.post('/', (req, res) => {
     res.status(400).json({ msg: 'Please include the solicited information' });
   }
   admins.push(req.body);
-  res.json(admins);
+  const newAdmin = admins;
+  fs.writeFile('src/data/admins.json', JSON.stringify(newAdmin), (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json({
+        msg: 'Admin created', admins: newAdmin,
+      });
+    }
+  });
 });
 
 // Update admin
 router.put('/:id', (req, res) => {
   const found = admins.some((admin) => admin.id === Number(req.params.id));
   if (found) {
-    const updAdmin = req.body;
-    admins.forEach((admin) => {
-      if (admin.id === Number(req.params.id)) {
-        admin.firstName = updAdmin.firstName ? updAdmin.firstName : admin.firstName;
-        admin.lastName = updAdmin.lastName ? updAdmin.lastName : admin.lastName;
-        admin.email = updAdmin.email ? updAdmin.email : admin.email;
-        admin.password = updAdmin.password ? updAdmin.password : admin.password;
-        admin.active = updAdmin.active ? updAdmin.active : admin.active;
+    const otherAdmin = admins.filter((admin) => admin.id !== Number(req.params.id));
+    const adminCopy = admins.find((admin) => admin.id === Number(req.params.id));
+    const {
+      firstName, lastName, email, password, active,
+    } = req.body;
+    const updAdmin = {
+      id: Number(req.params.id),
+      firstName: (firstName || adminCopy.firstName),
+      lastName: (lastName || adminCopy.lastName),
+      email: (email || adminCopy.email),
+      password: (password || adminCopy.password),
+      active: Boolean(active ?? adminCopy.active),
+    };
+    otherAdmin.push(updAdmin);
+    fs.writeFile('src/data/admins.json', JSON.stringify(otherAdmin), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json({ msg: 'Admin updated', admins: otherAdmin });
+      }
+    });
+  } else {
+    res.status(400).json({ msg: `No admins with the id of ${req.params.id}` });
+  }
+});
 
-        res.json({ msg: 'Admin updated', admin });
+// Delete admin
+router.delete('/id=:id', (req, res) => {
+  const found = admins.some((admin) => admin.id === Number(req.params.id));
+  const dltAdmin = admins.filter((admin) => admin.id !== Number(req.params.id));
+  if (found) {
+    fs.writeFile('src/data/admins.json', JSON.stringify(dltAdmin), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json({
+          msg: 'Admin deleted', admins: dltAdmin,
+        });
       }
     });
   } else {
@@ -79,18 +118,6 @@ router.get('/active=:active', (req, res) => {
     res.json(listOfActives);
   } else {
     res.status(400).json({ msg: `No admins with the active of ${req.params.active}` });
-  }
-});
-
-// Delete admin
-router.delete('/id=:id', (req, res) => {
-  const found = admins.some((admin) => admin.id === Number(req.params.id));
-  if (found) {
-    res.json({
-      msg: 'Admin deleted', admins: admins.filter((admin) => admin.id !== Number(req.params.id)),
-    });
-  } else {
-    res.status(400).json({ msg: `No admins with the id of ${req.params.id}` });
   }
 });
 
