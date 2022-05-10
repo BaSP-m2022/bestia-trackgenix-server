@@ -59,6 +59,50 @@ router.get('/getById/:id', (req, res) => {
   }
 });
 
+router.get('/filter', (req, res) => {
+  const timesheetDes = req.query.description;
+  const timesheetDay = req.query.day;
+  const timesheetRole = req.query.role;
+  const timesheetProject = req.query.project;
+  const timesheetTask = req.query.task;
+  const timesheetValidated = req.query.validated;
+  const timesheetPm = req.query.projectManager;
+  if (!timesheetDes && !timesheetDay && !timesheetRole && !timesheetProject
+        && !timesheetTask && !timesheetValidated && !timesheetPm) {
+    res.send(timesheets);
+  } else if (timesheetDes) {
+    const filteredByDes = timesheets.filter((f) => f.description.includes(timesheetDes));
+    if (filteredByDes.length > 0) {
+      res.send(filteredByDes);
+    }
+  } else if (timesheetDay) {
+    const filteredByDay = timesheets.filter((f) => f.day.includes(timesheetDay));
+    if (filteredByDay.length > 0) {
+      res.send(filteredByDay);
+    }
+  } else if (timesheetRole) {
+    const filteredByRole = timesheets.filter((f) => f.role.includes(timesheetRole));
+    if (filteredByRole.length > 0) {
+      res.send(filteredByRole);
+    }
+  } else if (timesheetProject) {
+    const filteredByProject = timesheets.filter((f) => f.project.includes(timesheetProject));
+    if (filteredByProject.length > 0) {
+      res.send(filteredByProject);
+    }
+  } else if (timesheetTask) {
+    const filteredByTask = timesheets.filter((f) => f.task.includes(timesheetTask));
+    if (filteredByTask.length > 0) {
+      res.send(filteredByTask);
+    }
+  } else if (timesheetPm) {
+    const filteredByPm = timesheets.filter((f) => f.projectManager.includes(timesheetPm));
+    if (filteredByPm.length > 0) {
+      res.send(filteredByPm);
+    }
+  }
+});
+
 // PUT METHOD
 
 router.put('/updated/:id', (req, res) => {

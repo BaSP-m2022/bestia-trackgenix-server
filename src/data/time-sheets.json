@@ -1,11 +1,123 @@
-[{"id":"2","description":"check systems","day":"monday","role":"employee","project":"Waelchi, Flatley and Kessler","task":"Major Chemicals","validated":false,"projectId":550,"projectManager":"Ethan Dusting"},
-{"id":"4","description":"solve problems","day":"sunday","role":"employee","project":"Stark and Sons","task":"Other Specialty Stores","validated":false,"projectId":220,"projectManager":"Kelsy Dodgson"},
-{"id":"3","description":"manage operations","day":"thursday","role":"admin","project":"Simonis, Reinger and Muller","task":"n/a","validated":true,"projectId":330,"projectManager":"Frayda Coggon"},
-{"id":"5","description":"manage systems","day":"tuesday","role":"admin","project":"Tromp, Bernier and Franecki","task":"n/a","validated":false,"projectId":440,"projectManager":"Darnall Girvin"},
-{"id":"10","description":"check systems","day":"friday","role":"employee","project":"Thiel LLC","task":"Catalog/Specialty Distribution","validated":true,"projectId":110,"projectManager":"Tildie Summerhayes"},
-{"id":"7","description":"create systems","day":"friday","role":"employee","project":"Jacobs-Kunze","task":"n/a","validated":false,"projectId":320,"projectManager":"Omar Paquet"},
-{"id":"8","description":"create systems","day":"monday","role":"employee","project":"Ankunding-Brown","task":"Trucking Freight/Courier Services","validated":true,"projectId":560,"projectManager":"Jewelle Gowar"},
-{"id":"0","description":"check systems","day":"wednesday","role":"employee","project":"Jaskolski-Kshlerin","task":"Real Estate Investment Trusts","validated":true,"projectId":250,"projectManager":"Mylo Milthorpe"},
-{"id":"6","description":"manage operations","day":"friday","role":"admin","project":"Mills, Stracke and Lynch","task":"Biotechnology: Commercial Physical & Biological Resarch","validated":true,"projectId":150,"projectManager":"Tana Print"},
-{"id":"1","description":"manage employees","day":"monday","role":"superadmin","project":"Auer Group","task":"Savings Institutions","validated":true,"projectId":120,"projectManager":"Trip Alyutin"},
-{"id":"9","description":"generate systems","day":"monday","role":"employee","project":"Save, check and find","task":"Chemicals","validated":false,"projectId":340,"projectManager":"Justin Dusting"}]
+[
+    {
+        "id": "2",
+        "description": "check systems",
+        "day": "monday",
+        "role": "employee",
+        "project": "Waelchi, Flatley and Kessler",
+        "task": "Major Chemicals",
+        "validated": false,
+        "projectId": 550,
+        "projectManager": "Justin Dusting"
+    },
+    {
+        "id": "4",
+        "description": "solve problems",
+        "day": "sunday",
+        "role": "employee",
+        "project": "Stark and Sons",
+        "task": "Other Specialty Stores",
+        "validated": false,
+        "projectId": 220,
+        "projectManager": "Kelsy Dodgson"
+    },
+    {
+        "id": "3",
+        "description": "manage operations",
+        "day": "thursday",
+        "role": "admin",
+        "project": "Simonis, Reinger and Muller",
+        "task": "Major Chemicals",
+        "validated": true,
+        "projectId": 330,
+        "projectManager": "Frayda Coggon"
+    },
+    {
+        "id": "5",
+        "description": "manage systems",
+        "day": "tuesday",
+        "role": "admin",
+        "project": "Tromp, Bernier and Franecki",
+        "task": "Savings Institutions",
+        "validated": false,
+        "projectId": 440,
+        "projectManager": "Darnall Girvin"
+    },
+    {
+        "id": "10",
+        "description": "check systems",
+        "day": "friday",
+        "role": "employee",
+        "project": "Thiel LLC",
+        "task": "Catalog/Specialty Distribution",
+        "validated": true,
+        "projectId": 110,
+        "projectManager": "Darnall Girvin"
+    },
+    {
+        "id": "7",
+        "description": "create systems",
+        "day": "friday",
+        "role": "employee",
+        "project": "Jacobs-Kunze",
+        "task": "Major Chemicals",
+        "validated": false,
+        "projectId": 320,
+        "projectManager": "Omar Paquet"
+    },
+    {
+        "id": "8",
+        "description": "create systems",
+        "day": "monday",
+        "role": "employee",
+        "project": "Thiel LLC",
+        "task": "Trucking Freight/Courier Services",
+        "validated": true,
+        "projectId": 560,
+        "projectManager": "Jewelle Gowar"
+    },
+    {
+        "id": "0",
+        "description": "check systems",
+        "day": "wednesday",
+        "role": "employee",
+        "project": "Jaskolski-Kshlerin",
+        "task": "Real Estate Investment Trusts",
+        "validated": true,
+        "projectId": 250,
+        "projectManager": "Darnall Girvin"
+    },
+    {
+        "id": "6",
+        "description": "manage operations",
+        "day": "friday",
+        "role": "admin",
+        "project": "Thiel LLC",
+        "task": "Biotechnology: Commercial Physical & Biological Resarch",
+        "validated": true,
+        "projectId": 150,
+        "projectManager": "Kelsy Dodgson"
+    },
+    {
+        "id": "1",
+        "description": "manage employees",
+        "day": "monday",
+        "role": "superadmin",
+        "project": "Thiel LLC",
+        "task": "Savings Institutions",
+        "validated": true,
+        "projectId": 120,
+        "projectManager": "Trip Alyutin"
+    },
+    {
+        "id": "9",
+        "description": "generate systems",
+        "day": "monday",
+        "role": "employee",
+        "project": "Stark and Sons",
+        "task": "Chemicals",
+        "validated": false,
+        "projectId": 340,
+        "projectManager": "Justin Dusting"
+    }
+]
