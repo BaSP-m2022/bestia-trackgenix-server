@@ -38,7 +38,43 @@ router.get('/employee/:employeeID', (req, res) => {
   if (idOfEmployee.length > 0) {
     res.send(idOfEmployee);
   } else {
-    res.send(`Eemployee with ID number "${emplId}" does not exist`);
+    res.send(`Employee with ID number "${emplId}" does not exist`);
+  }
+});
+
+// Delete a task
+router.delete('/task/:taskID', (req, res) => {
+  const tasksId = req.params.taskID;
+  const idOfTasks = tasks.filter((task) => task.taskID !== tasksId);
+  if (tasks.length === idOfTasks.length) {
+    res.send('This task could not be found');
+  } else {
+    fs.writeFile('src/data/tasks.json', JSON.stringify(idOfTasks), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('Task succesfully deleted');
+      }
+    });
+  }
+});
+
+// Create a task
+router.post('/task', (req, res) => {
+  const taskData = req.body;
+  const taskFound = tasks.find((task) => task.taskID === taskData.taskID);
+  if (taskData.taskID && taskData.taskName && taskData.taskDescription
+    && taskData.status && taskData.employeeID && !taskFound) {
+    tasks.push(taskData);
+    fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('Task succesfully created');
+      }
+    });
+  } else {
+    res.send('Task cannot be created. Review fields.');
   }
 });
 
