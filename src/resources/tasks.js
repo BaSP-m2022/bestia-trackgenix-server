@@ -31,4 +31,15 @@ router.get('/taskName/:taskName', (req, res) => {
   }
 });
 
+// Obtain tasks by Employee
+router.get('/employee/:employeeID', (req, res) => {
+  const emplId = req.params.employeeID;
+  const idOfEmployee = tasks.filter((task) => task.employeeID === emplId);
+  if (idOfEmployee.length > 0) {
+    res.send(idOfEmployee);
+  } else {
+    res.send(`Eemployee with ID number "${emplId}" does not exist`);
+  }
+});
+
 module.exports = router;
