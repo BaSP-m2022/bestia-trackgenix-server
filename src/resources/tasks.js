@@ -78,4 +78,23 @@ router.post('/task', (req, res) => {
   }
 });
 
+// Edit a task
+router.put('/task/:taskID', (req, res) => {
+  let tasksId = req.params.taskID;
+  const jsonData = fs.readFileSync('src/data/tasks.json');
+  const data = JSON.parse(jsonData);
+  const filterTasks = tasks.find((task) => task.taskID === tasksId);
+  if (filterTasks) {
+    tasksId -= 1;
+    data[tasksId].taskName = req.body.taskName;
+    data[tasksId].taskDescription = req.body.taskDescription;
+    data[tasksId].status = req.body.status;
+    data[tasksId].employeeID = req.body.employeeID;
+    fs.writeFileSync('src/data/tasks.json', JSON.stringify(data));
+    res.json(data);
+  } else {
+    res.send('Task not found');
+  }
+});
+
 module.exports = router;
