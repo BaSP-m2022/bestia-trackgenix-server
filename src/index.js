@@ -23,7 +23,7 @@ app.delete('/employees/delete/:id', employees.deleteEmployeeId);
 app.put('/employees/put/:id', employees.putEmployeeId);
 
 // Admins API routes
-app.use('/api/superadmins', require('./resources/superadmins'));
+app.use('/api/superadmins', require('./resources/super-admins'));
 app.use('/api/admins', require('./resources/admins'));
 
 app.get('/employees/getById/:id', employees.getEmployeeById);

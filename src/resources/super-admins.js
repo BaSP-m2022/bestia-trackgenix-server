@@ -1,8 +1,4 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-param-reassign */
 const express = require('express');
-const res = require('express/lib/response');
 
 const fs = require('fs');
 
@@ -32,15 +28,17 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const found = superadmins.some((superadmin) => superadmin.id === Number(req.params.id));
   if (found) {
-    const otherSuperAdmin = superadmins.filter((superadmin) => superadmin.id !== Number(req.params.id));
-    const superAdminCopy = superadmins.find((superadmin) => superadmin.id === Number(req.params.id));
+    const otherSuperAdmin = superadmins.filter((superadmin) => superadmin.id
+     !== Number(req.params.id));
+    const superAdminCopy = superadmins.find((superadmin) => superadmin.id
+     === Number(req.params.id));
     const {
       firstName, lastName, email, password, active,
     } = req.body;
     const updSuperAdmin = {
       id: Number(req.params.id),
       firstName: (firstName || superAdminCopy.firstName),
-      lastName: (lastName ||superAdminCopy.lastName),
+      lastName: (lastName || superAdminCopy.lastName),
       email: (email || superAdminCopy.email),
       password: (password || superAdminCopy.password),
       active: Boolean(active ?? superAdminCopy.active),
@@ -93,9 +91,11 @@ router.get('/id/:id', (req, res) => {
 
 // By name
 router.get('/name/:firstName', (req, res) => {
-  const superAdminName = superadmins.some((superadmin) => superadmin.firstName === String(req.params.firstName));
+  const superAdminName = superadmins.some((superadmin) => superadmin.firstName
+   === String(req.params.firstName));
   if (superAdminName) {
-    res.json(superadmins.filter((superadmin) => superadmin.firstName === String(req.params.firstName)));
+    res.json(superadmins.filter((superadmin) => superadmin.firstName
+     === String(req.params.firstName)));
   } else {
     res.status(400).json({ msg: `No superadmins with the name of ${req.params.firstName}` });
   }
@@ -113,7 +113,8 @@ router.get('/lastName=:lastName', (req, res) => {
 
 // By active status
 router.get('/active=:active', (req, res) => {
-  const listOfActivesSuperA = superadmins.filter((superadmin) => (superadmin.active.toString() === req.params.active));
+  const listOfActivesSuperA = superadmins.filter((superadmin) => (superadmin.active.toString()
+  === req.params.active));
   if (req.params.active === 'true' || req.params.active === 'false') {
     res.json(listOfActivesSuperA);
   } else {
