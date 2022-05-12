@@ -1,5 +1,6 @@
 // use "import" to import libraries
 import express from 'express';
+import employees from './resources/employees';
 
 // use "require" to import JSON files
 const projectsRouter = require('./resources/projects');
@@ -20,6 +21,10 @@ app.get('/', async (req, res) => {
 
 // Admins API routes
 app.use('/api/admins', require('./resources/admins'));
+
+app.get('/employees/getById/:id', employees.getEmployeeById);
+app.get('/employees/filterByStatus', employees.filterByStatus);
+app.get('/employees/filterByLastName', employees.filterByLName);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
