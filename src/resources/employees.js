@@ -63,17 +63,45 @@ function deleteEmployeeId(req, res) {
     res.status(404).json({ msg: 'Employee not found' });
   }
 }
-/* function getByFilter(req, res) {
-  const { status } = req.params;
-  const em = employees.filter((proj) => proj.id === parseInt(id, 10));
-  if (project) {
-    res.status(200).json(project);
+function getAll(req, res) {
+  res.status(200).json(employees);
+}
+
+function getEmployeeById(req, res) {
+  const { id } = req.params;
+  const employee = employees.find((e) => e.id === id);
+  if (employee) {
+    res.status(200).json(employee);
   } else {
-    res.status(404).json({ msg: 'Project not found' });
+    res.status(404).json({ msg: 'Employee not found.' });
   }
-} */
+}
+
+function filterByStatus(req, res) {
+  const status = req.query.active;
+  const active = employees.filter((e) => e.active.toString() === status);
+  if (active.length > 0) {
+    res.status(200).json(active);
+  } else {
+    res.status(404).json({ msg: 'Employees not found.' });
+  }
+}
+
+function filterByLName(req, res) {
+  const lName = req.query.lastName;
+  const lastName = employees.filter((e) => e.lastName.toString() === lName);
+  if (lastName.length > 0) {
+    res.status(200).json(lastName);
+  } else {
+    res.status(404).json({ msg: 'Employees not found.' });
+  }
+}
 module.exports = {
+  getAll,
   deleteEmployeeId,
   putEmployeeId,
   createEmployee,
+  getEmployeeById,
+  filterByStatus,
+  filterByLName,
 };
