@@ -1,5 +1,9 @@
 // use "import" to import libraries
-const express = require('express');
+import express from 'express';
+import employees from './resources/employees';
+
+// use "require" to import JSON files
+const projectsRouter = require('./resources/projects');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,12 +14,21 @@ app.use(express.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/projects', projectsRouter);
 app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
+app.post('/employees/created', employees.createEmployee);
+app.delete('/employees/delete/:id', employees.deleteEmployeeId);
+app.put('/employees/put/:id', employees.putEmployeeId);
 
 // Admins API routes
 app.use('/api/superadmins', require('./resources/superadmins'));
+app.use('/api/admins', require('./resources/admins'));
+
+app.get('/employees/getById/:id', employees.getEmployeeById);
+app.get('/employees/filterByStatus', employees.filterByStatus);
+app.get('/employees/filterByLastName', employees.filterByLName);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
