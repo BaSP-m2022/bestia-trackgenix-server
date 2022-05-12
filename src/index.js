@@ -2,23 +2,24 @@
 import express from 'express';
 
 // use "require" to import JSON files
-const admins = require('./data/admins.json');
 const projectsRouter = require('./resources/projects');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
+// Body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.use('/projects', projectsRouter);
 app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/admins', (req, res) => {
-  res.status(200).json({
-    data: admins,
-  });
-});
+// Admins API routes
+app.use('/api/admins', require('./resources/admins'));
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
