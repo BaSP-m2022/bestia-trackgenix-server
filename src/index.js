@@ -1,5 +1,6 @@
 // use "import" to import libraries
 import express from 'express';
+import timesheetRouter from './resources/time-sheets';
 import employees from './resources/employees';
 
 // use "require" to import JSON files
@@ -29,6 +30,8 @@ app.use('/api/admins', require('./resources/admins'));
 app.get('/employees/getById/:id', employees.getEmployeeById);
 app.get('/employees/filterByStatus', employees.filterByStatus);
 app.get('/employees/filterByLastName', employees.filterByLName);
+
+app.use('/time-sheets', timesheetRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
