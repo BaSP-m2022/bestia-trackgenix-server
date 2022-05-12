@@ -18,6 +18,9 @@ app.use('/projects', projectsRouter);
 app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
+app.post('/employees/created', employees.createEmployee);
+app.delete('/employees/delete/:id', employees.deleteEmployeeId);
+app.put('/employees/put/:id', employees.putEmployeeId);
 
 // Admins API routes
 app.use('/api/admins', require('./resources/admins'));
