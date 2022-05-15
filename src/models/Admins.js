@@ -1,4 +1,3 @@
-import { boolean } from 'joi';
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
@@ -26,10 +25,10 @@ const adminSchema = new Schema(
       required: true,
     },
     active: {
-      type: boolean,
+      type: Boolean,
       required: true,
     },
   },
 );
 
-export default mongoose.model('Admins', adminSchema);
+export default mongoose.model('Admin', adminSchema);

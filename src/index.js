@@ -36,8 +36,8 @@ app.delete('/employees/delete/:id', employees.deleteEmployeeId);
 app.put('/employees/put/:id', employees.putEmployeeId);
 
 // Admins API routes
-app.use('/api/superadmins', require('./controllers/super-admins'));
-app.use('/api/admins', require('./controllers/admins'));
+app.use('/superadmins', require('./controllers/super-admins'));
+app.use('/admins', require('./controllers/admins'));
 
 // Time-sheets API route
 app.use('/time-sheets', timesheetRouter);
