@@ -3,6 +3,6 @@ import adminsRoutes from './admins';
 
 const router = express.Router;
 
-router.use('/admins', adminsRoutes);
+router.set('/admins', adminsRoutes);
 
 export default router;

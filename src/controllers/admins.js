@@ -35,6 +35,7 @@ const createAdmin = async (req, res) => {
   }
 };
 
+// Update admin
 const updateAdmin = async (req, res) => {
   try {
     const adminExist = await AdminModel.findById(req.params.id);
@@ -120,36 +121,6 @@ const getAdminById = async (req, res) => {
     });
   }
 };
-
-// // Filter Admin By name
-// const GetAdminByName = router.get('/name/:firstName', (req, res) => {
-//   const adminName = admins.some((admin) => admin.firstName === String(req.params.firstName));
-//   if (adminName) {
-//     res.json(admins.filter((admin) => admin.firstName === String(req.params.firstName)));
-//   } else {
-//     res.status(400).json({ msg: `No admins with the name of ${req.params.firstName}` });
-//   }
-// });
-
-// // Filter Admin By lastName
-// const GetAdminByLastName = router.get('/lastName/:lastName', (req, res) => {
-//   const found = admins.some((admin) => admin.lastName === req.params.lastName);
-//   if (found) {
-//     res.json(admins.filter((admin) => admin.lastName === req.params.lastName));
-//   } else {
-//     res.status(400).json({ msg: `No admins with the lastName of ${req.params.lastName}` });
-//   }
-// });
-
-// // Filter Admin By Status
-// const GetAdminByStatus = router.get('/active/:active', (req, res) => {
-//   const listOfActives = admins.filter((admin) =>(admin.active.toString() === req.params.active));
-//   if (req.params.active === 'true' || req.params.active === 'false') {
-//     res.json(listOfActives);
-//   } else {
-//     res.status(400).json({ msg: `No admins with the active of ${req.params.active}` });
-//   }
-// });
 
 module.exports = {
   createAdmin,
