@@ -108,7 +108,7 @@ const getAllAdmins = async (req, res) => {
 };
 
 // Get Admin By Id
-const getAdminsById = async (req, res) => {
+const getAdminById = async (req, res) => {
   try {
     const adminExist = await AdminModel.findById(req.params.id);
     return res.status(200).json(adminExist);
@@ -156,5 +156,5 @@ module.exports = {
   updateAdmin,
   deleteAdmin,
   getAllAdmins,
-  getAdminsById,
+  getAdminById,
 };

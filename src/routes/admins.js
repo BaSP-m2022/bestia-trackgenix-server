@@ -1,16 +1,17 @@
 import express from 'express';
-import adminsControllers from '../controllers/admins';
-// import adminsValidations from '../validations/admins';
+import adminControllers from '../controllers/admins';
+import adminValidations from '../validations/admins';
 
 const router = express.Router;
 
-router.get('/', adminsControllers.GetAllAdmins);
-router.get('/:id', adminsControllers.GetAdminById);
-router.get('/name/:firstName', adminsControllers.GetAdminByName);
-router.get('/lastName/:lastName', adminsControllers.GetAdminByLastName);
-router.get('/active/:active', adminsControllers.GetAdminByStatus);
-router.post('/', adminsControllers.CreateAdmin);
-router.put('/:id', adminsControllers.UpdateAdmin);
-router.delete('/:id', adminsControllers.DeleteAdmin);
+router.post('/', adminValidations.validateCreation, adminControllers.createSuperAdmin);
+router.get('/', adminControllers.getAllAdmins);
+router.get('/:id', adminControllers.getAdminById);
+// router.get('/name/:firstName', adminsControllers.);
+// router.get('/lastName/:lastName', adminsControllers.);
+// router.get('/active/:active', adminsControllers.);
+router.post('/', adminControllers.createAdmin);
+router.put('/:id', adminControllers.updateAdmin);
+router.delete('/:id', adminControllers.deleteAdmin);
 
 export default router;
