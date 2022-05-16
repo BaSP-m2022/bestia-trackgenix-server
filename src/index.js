@@ -4,12 +4,14 @@ import express from 'express';
 import mongoose from 'mongoose';
 import timesheetRouter from './controllers/time-sheets';
 import employees from './controllers/employees';
+import superAdmins from './routes/super-admins';
 
 // use "require" to import JSON files
 const projectsRouter = require('./controllers/projects');
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.use('/SuperAdmin', superAdmins);
 
 // mongoose
 const URI = 'mongodb+srv://BaSP:BaSP2022@basp-database.jeirb.mongodb.net/BaSP-database?retryWrites=true&w=majority';
