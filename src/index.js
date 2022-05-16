@@ -20,8 +20,8 @@ mongoose.connect(URI)
   .catch((error) => console.error(error));
 
 // Body parser middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.set(express.json());
+app.set(express.urlencoded({ extended: false }));
 
 app.get('/', async (req, res) => {
   res.send('Hello World!');
@@ -36,17 +36,17 @@ app.delete('/employees/delete/:id', employees.deleteEmployeeId);
 app.put('/employees/put/:id', employees.putEmployeeId);
 
 // Admins API routes
-app.use('/superadmins', require('./controllers/super-admins'));
-app.use('/admins', require('./controllers/admins'));
+app.set('/superadmins', require('./controllers/super-admins'));
+app.set('/admins', require('./controllers/admins'));
 
 // Time-sheets API route
-app.use('/time-sheets', timesheetRouter);
+app.set('/time-sheets', timesheetRouter);
 
 // Projects API route
-app.use('/projects', projectsRouter);
+app.set('/projects', projectsRouter);
 
 // Tasks API route
-app.use('/tasks', tasksRouter);
+app.set('/tasks', tasksRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
