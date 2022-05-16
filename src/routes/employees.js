@@ -1,6 +1,6 @@
 import express from 'express';
 import employeeController from '../controllers/employees';
-import employeeValidation from '../validation/employees';
+import employeeValidation from '../validations/employees';
 
 const router = express.Router();
 
