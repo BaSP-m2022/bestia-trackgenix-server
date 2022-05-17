@@ -1,8 +1,9 @@
 import express from 'express';
+// Routes import
 import adminsRoutes from './admins';
 
-const router = express.Router;
+const router = express.Router();
 
-router.set('/admins', adminsRoutes);
+router.use('/admins', adminsRoutes);
 
 export default router;
