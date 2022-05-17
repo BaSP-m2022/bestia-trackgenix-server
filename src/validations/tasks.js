@@ -6,7 +6,6 @@ const validateCreation = (req, res, next) => {
     employeeName: Joi.string().min(3).max(50).required(),
   });
   const taskValidation = Joi.object({
-    parentProject: Joi.string().alphanum().required(),
     taskName: Joi.string().min(1).max(50).required(),
     taskDescription: Joi.string().min(1).max(250).optional(),
     assignedEmployee: Joi.array().items(employeePropSchema),
