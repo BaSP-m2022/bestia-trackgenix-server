@@ -1,12 +1,423 @@
 {
 	"info": {
-		"_postman_id": "a85b3507-3af0-4078-bd74-885a6fdd54b7",
+		"_postman_id": "4f33319e-529e-4366-a54d-4ccb6cd659dc",
 		"name": "postman_collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "admins",
+			"item": [
+				{
+					"name": "Get all admins",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get admin by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/6283e0cd916fb0dc8d711e01",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6283e0cd916fb0dc8d711e01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"firstName\": \"Natasha\",\r\n    \"lastName\": \"Romanoff\",\r\n    \"email\": \"blackwidow1234@baidu.com\",\r\n    \"password\": \"LmAt8EsOR\",\r\n    \"active\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Luciaadsadasd\",\r\n    \"lastName\": \"Crack\",\r\n    \"email\": \"avaggers0@baidu.com\",\r\n    \"password\": \"LmAt8EsOR\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/6283e31f8b0b24556005a0c8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6283e31f8b0b24556005a0c8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/6283e31f8b0b24556005a0c8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6283e31f8b0b24556005a0c8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "employees",
+			"item": [
+				{
+					"name": "Get all admins",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "super-admins",
+			"item": [
+				{
+					"name": "Post super admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"firstName\": \"Alair\",\r\n    \"lastName\": \"Vaggers\",\r\n    \"email\": \"avaggers0@baidu.com\",\r\n    \"password\": \"LmAt8EsOR\",\r\n    \"active\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/super-admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete super admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/super-admins/628314971f5f583a3cbde1ca",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins",
+								"628314971f5f583a3cbde1ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update super admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"firstName\": \"Juan Roman\",\r\n    \"lastName\": \"Riquelme\",\r\n    \"email\": \"nose@baidu.com\",\r\n    \"password\": \"LmAt8EsOR\",\r\n    \"active\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/super-admins/6283131febac34f6c43b6b3f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins",
+								"6283131febac34f6c43b6b3f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all super admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/super-admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get super admin by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/super-admins/6283131febac34f6c43b6b3f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins",
+								"6283131febac34f6c43b6b3f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tasks",
 			"item": [
 				{
 					"name": "New Request",
@@ -19,24 +430,87 @@
 			]
 		},
 		{
-			"name": "employees",
-			"item": []
-		},
-		{
-			"name": "projects",
-			"item": []
-		},
-		{
-			"name": "super-admins",
-			"item": []
-		},
-		{
-			"name": "tasks",
-			"item": []
-		},
-		{
 			"name": "time-sheets",
-			"item": []
+			"item": [
+				{
+					"name": "Get time-sheets by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/time-sheets/getById/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"time-sheets",
+								"getById",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a time-sheet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/add/time-sheets",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"add",
+								"time-sheets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a time-sheet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/time-sheets/updated/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"time-sheets",
+								"updated",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a time-sheet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/time-sheets/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"time-sheets",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
