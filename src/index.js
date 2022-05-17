@@ -17,7 +17,7 @@ mongoose.connect(URI)
 // Routes
 app.use(router);
 
-// Body parser middleware
+// Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -26,7 +26,6 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });
 

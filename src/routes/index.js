@@ -1,9 +1,9 @@
 import express from 'express';
 // Routes import
-import adminsRoutes from './admins';
+import adminRoutes from './admins';
 
 const router = express.Router();
 
-router.use('/admins', adminsRoutes);
+router.use('/admins', adminRoutes);
 
 export default router;

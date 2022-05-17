@@ -1,7 +1,4 @@
-// import AdminModel from '../models/Admins';
-/* Error to resolve => "Cannot use import declarations in modules that export using CommonJS
-(module.exports = 'foo' or exports.bar = 'hi')eslint(import/no-import-module-exports)" */
-const AdminModel = require('../models/Admins');
+import AdminModel from '../models/Admins';
 
 // Create admin
 const createAdmin = async (req, res) => {
@@ -136,7 +133,7 @@ const updateAdmin = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   createAdmin,
   updateAdmin,
   deleteAdmin,
