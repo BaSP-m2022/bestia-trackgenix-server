@@ -1,12 +1,5 @@
 import mongoose from 'mongoose';
 
-const employeeSchema = new mongoose.Schema({
-  role: {
-    type: String,
-    required: true,
-  },
-});
-
 const projectSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -32,7 +25,10 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  employees: [employeeSchema],
+  employees: {
+    type: String,
+    required: true,
+  },
 });
 
 export default mongoose.model('Projects', projectSchema);
