@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', adminValidations.validateCreate, adminControllers.createAdmin);
 router.get('/', adminControllers.getAllAdmins);
 router.get('/:id', adminControllers.getAdminById);
-router.put('/:id', adminControllers.updateAdmin);
+router.put('/:id', adminValidations.validateUpdate, adminControllers.updateAdmin);
 router.delete('/:id', adminControllers.deleteAdmin);
 
 export default router;

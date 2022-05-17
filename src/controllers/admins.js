@@ -105,7 +105,6 @@ const updateAdmin = async (req, res) => {
     const adminExist = await AdminModel.findById(req.params.id);
     if (adminExist) {
       const admin = new AdminModel({
-        id: req.body.id,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
