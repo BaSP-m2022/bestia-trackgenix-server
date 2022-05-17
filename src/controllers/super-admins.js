@@ -18,8 +18,8 @@ const getAllSuperAdmins = async (req, res) => {
 };
 const getSuperAdminsById = async (req, res) => {
   try {
-    if (req.params.id) {
       const SuperAdmin = await SuperAdmins.findById(req.params.id);
+    if (SuperAdmin) {
       res.status(200).json({
         msg: `The Super Admin with id ${req.params.id} is:`,
         data: SuperAdmin,
@@ -43,7 +43,7 @@ const createSuperAdmin = async (req, res) => {
   try {
     const superAdmin = new SuperAdmins({
       firstName: req.body.firstName,
-      lastName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
       active: req.body.active,
@@ -56,7 +56,7 @@ const createSuperAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: error.details[0].message,
+      message: error,
       data: undefined,
       error: true,
     });
@@ -78,14 +78,14 @@ const deleteSuperAdmin = async (req, res) => {
         data: undefined,
         error: true,
       });
-    } return res.status(204).json({
+    } return res.status(200).json({
       message: 'The Super Admin has been successfully deleted',
       data: result,
       error: false,
     });
   } catch (error) {
     return res.status(400).json({
-      message: error.details[0].message,
+      message: error,
       data: undefined,
       error: true,
     });

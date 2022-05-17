@@ -3,6 +3,6 @@ import superAdminsRouter from './super-admins';
 
 const router = express.Router();
 
-router.use('/Super-admins', superAdminsRouter);
+router.use('/super-admins', superAdminsRouter);
 
 export default router;
