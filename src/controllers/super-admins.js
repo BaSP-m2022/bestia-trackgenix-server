@@ -18,7 +18,7 @@ const getAllSuperAdmins = async (req, res) => {
 };
 const getSuperAdminsById = async (req, res) => {
   try {
-      const SuperAdmin = await SuperAdmins.findById(req.params.id);
+    const SuperAdmin = await SuperAdmins.findById(req.params.id);
     if (SuperAdmin) {
       res.status(200).json({
         msg: `The Super Admin with id ${req.params.id} is:`,
