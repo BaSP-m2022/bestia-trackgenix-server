@@ -4,10 +4,6 @@ const { Schema } = mongoose;
 
 const taskSchema = new Schema(
   {
-    taskID: {
-      type: String,
-      required: true,
-    },
     taskName: {
       type: String,
       required: true,
@@ -20,16 +16,16 @@ const taskSchema = new Schema(
       {
         employeeId: {
           type: String,
-          required: true,
+          required: false,
         },
         employeeRole: {
           type: String,
-          required: true,
+          required: false,
           enum: ['DEV', 'QA', 'PM', 'TL'],
         },
         employeeName: {
           type: String,
-          required: true,
+          required: false,
         },
       },
     ],
@@ -40,7 +36,6 @@ const taskSchema = new Schema(
     status: {
       type: String,
       required: true,
-      enum: ['Ready to deliver', 'Paused', 'Unassigned', 'Completed', 'In progress', 'Cancelled'],
     },
   },
   { timestamps: true },
