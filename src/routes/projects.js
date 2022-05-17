@@ -4,7 +4,7 @@ import projectValidation from '../validations/projects';
 
 const router = express.Router();
 
-router.post('/', projectController.create);
+router.put('/:id', projectValidation.validationUpdate, projectController.put);
 // router.get('/', projectController.getAll);
 router.get('/:id', projectController.getById);
 router.delete('/:id', projectController.deleteById);
