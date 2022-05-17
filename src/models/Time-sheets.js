@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const timeSheetSchema = new Schema(
+const TimeSheetModel = new Schema(
   {
     description: {
       type: String,
@@ -38,4 +38,4 @@ const timeSheetSchema = new Schema(
   { timestamps: true },
 );
 
-export default mongoose.model('Time-sheet', timeSheetSchema);
+export default mongoose.model('Time-sheet', TimeSheetModel);

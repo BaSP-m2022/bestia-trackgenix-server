@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a85b3507-3af0-4078-bd74-885a6fdd54b7",
+		"_postman_id": "92c0b403-c5c2-403b-8fd7-bb7d161559b8",
 		"name": "postman_collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,7 +12,10 @@
 					"name": "New Request",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
@@ -36,7 +39,117 @@
 		},
 		{
 			"name": "time-sheets",
-			"item": []
+			"item": [
+				{
+					"name": "localhost:3000/time-sheets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"mññññx\",\r\n    \"day\": \"2022-06-16T18:02:23.412Z\",\r\n    \"role\": \"PM\",\r\n    \"project\": \"ksksksk\",\r\n    \"task\": \"jsjsjsj\",\r\n    \"validated\": true,\r\n    \"projectManager\": \"potato\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/time-sheets",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"time-sheets"
+							]
+						},
+						"description": "Create new time-sheet"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/time-sheets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"mññññx\",\r\n    \"day\": \"2022-06-16T18:02:23.412Z\",\r\n    \"role\": \"PM\",\r\n    \"project\": \"ksksksk\",\r\n    \"task\": \"jsjsjsj\",\r\n    \"validated\": true,\r\n    \"projectManager\": \"potato\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"time-sheets",
+								"62842c85b0fe1abe50009f65"
+							]
+						},
+						"description": "Get time-sheet by id"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"mññññx\",\r\n    \"day\": \"2022-06-16T18:02:23.412Z\",\r\n    \"role\": \"PM\",\r\n    \"project\": \"ksksksk\",\r\n    \"task\": \"jsjsjsj\",\r\n    \"validated\": true,\r\n    \"projectManager\": \"dinosaur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"time-sheets",
+								"62842c85b0fe1abe50009f65"
+							]
+						},
+						"description": "Update time-sheet by id"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"time-sheets",
+								"62842c85b0fe1abe50009f65"
+							]
+						},
+						"description": "Delete time-sheet by id"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
