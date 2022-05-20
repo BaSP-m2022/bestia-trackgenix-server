@@ -1,124 +1,141 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-param-reassign */
-const express = require('express');
-const res = require('express/lib/response');
-
-const fs = require('fs');
-
-const router = express.Router();
-const admins = require('../data/admins.json');
+import AdminModel from '../models/Admins';
 
 // Create admin
-router.post('/', (req, res) => {
-  const rb = req.body;
-  if (!rb.id || !rb.firstName || !rb.lastName || !rb.email || !rb.password || !rb.active) {
-    res.status(400).json({ msg: 'Please include the solicited information' });
-  }
-  admins.push(req.body);
-  const newAdmin = admins;
-  fs.writeFile('src/data/admins.json', JSON.stringify(newAdmin), (err) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json({
-        msg: 'Admin created', admins: newAdmin,
-      });
-    }
-  });
-});
-
-// Update admin
-router.put('/:id', (req, res) => {
-  const found = admins.some((admin) => admin.id === Number(req.params.id));
-  if (found) {
-    const otherAdmin = admins.filter((admin) => admin.id !== Number(req.params.id));
-    const adminCopy = admins.find((admin) => admin.id === Number(req.params.id));
-    const {
-      firstName, lastName, email, password, active,
-    } = req.body;
-    const updAdmin = {
-      id: Number(req.params.id),
-      firstName: (firstName || adminCopy.firstName),
-      lastName: (lastName || adminCopy.lastName),
-      email: (email || adminCopy.email),
-      password: (password || adminCopy.password),
-      active: Boolean(active ?? adminCopy.active),
-    };
-    otherAdmin.push(updAdmin);
-    fs.writeFile('src/data/admins.json', JSON.stringify(otherAdmin), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({ msg: 'Admin updated', admins: otherAdmin });
-      }
+const createAdmin = async (req, res) => {
+  try {
+    const admin = new AdminModel({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+      active: req.body.active,
     });
-  } else {
-    res.status(400).json({ msg: `No admins with the id of ${req.params.id}` });
-  }
-});
-
-// Delete admin
-router.delete('/id=:id', (req, res) => {
-  const found = admins.some((admin) => admin.id === Number(req.params.id));
-  const dltAdmin = admins.filter((admin) => admin.id !== Number(req.params.id));
-  if (found) {
-    fs.writeFile('src/data/admins.json', JSON.stringify(dltAdmin), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({
-          msg: 'Admin deleted', admins: dltAdmin,
-        });
-      }
+    const result = await admin.save();
+    return res.status(201).json({
+      message: 'Admin created successfully.',
+      data: result,
+      error: false,
     });
-  } else {
-    res.status(400).json({ msg: `No admins with the id of ${req.params.id}` });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'An error has occurred.',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
 // Get all admins
-router.get('/', (req, res) => res.status(200).json(admins));
-
-// Get single admin:
-// By Id
-router.get('/id/:id', (req, res) => {
-  const found = admins.some((admin) => admin.id === Number(req.params.id));
-  if (found) {
-    res.json(admins.filter((admin) => admin.id === Number(req.params.id)));
-  } else {
-    res.status(400).json({ msg: `No admins with the id of ${req.params.id}` });
+const getAllAdmins = async (req, res) => {
+  try {
+    const allAdmins = await AdminModel.find({});
+    res.status(200).json({
+      msg: 'All Admins are:',
+      data: allAdmins,
+      error: false,
+    });
+  } catch (error) {
+    res.status(400).json({
+      msg: 'An error has occurred.',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-// By name
-router.get('/name/:firstName', (req, res) => {
-  const adminName = admins.some((admin) => admin.firstName === String(req.params.firstName));
-  if (adminName) {
-    res.json(admins.filter((admin) => admin.firstName === String(req.params.firstName)));
-  } else {
-    res.status(400).json({ msg: `No admins with the name of ${req.params.firstName}` });
+// Get admin by id
+const getAdminById = async (req, res) => {
+  try {
+    const admin = await AdminModel.findById(req.params.id);
+    if (admin) {
+      res.status(200).json({
+        msg: `The Admin with id ${req.params.id} is:`,
+        data: admin,
+        error: false,
+      });
+    }
+    return res.status(400).json({
+      msg: `Admin with id ${req.params.id} was not found.`,
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      msg: 'An error has occurred.',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-// By lastName
-router.get('/lastName=:lastName', (req, res) => {
-  const found = admins.some((admin) => admin.lastName === req.params.lastName);
-  if (found) {
-    res.json(admins.filter((admin) => admin.lastName === req.params.lastName));
-  } else {
-    res.status(400).json({ msg: `No admins with the lastName of ${req.params.lastName}` });
+// Delete admin
+const deleteAdmin = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(400).json({
+        message: 'Missing id parameter.',
+        data: undefined,
+        error: true,
+      });
+    }
+    const result = await AdminModel.findByIdAndDelete(req.params.id);
+    if (!result) {
+      return res.status(404).json({
+        message: `The Admin with id ${req.params.id} has not been found`,
+        data: undefined,
+        error: true,
+      });
+    } return res.status(200).json({
+      message: 'Admin deleted successfully.',
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error,
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-// By active status
-router.get('/active=:active', (req, res) => {
-  const listOfActives = admins.filter((admin) => (admin.active.toString() === req.params.active));
-  if (req.params.active === 'true' || req.params.active === 'false') {
-    res.json(listOfActives);
-  } else {
-    res.status(400).json({ msg: `No admins with the active of ${req.params.active}` });
+// Update admin
+const updateAdmin = async (req, res) => {
+  try {
+    const adminExist = await AdminModel.findById(req.params.id);
+    if (adminExist) {
+      const admin = new AdminModel({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        active: req.body.active,
+      });
+      const result = await admin.save();
+      return res.status(201).json({
+        message: 'Admin updated successfully.',
+        data: result,
+        error: false,
+      });
+    }
+    return res.status(404).json({
+      message: `Admin with id ${req.params.id} was not found.`,
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'An error has occurred.',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-module.exports = router;
+export default {
+  createAdmin,
+  updateAdmin,
+  deleteAdmin,
+  getAllAdmins,
+  getAdminById,
+};
