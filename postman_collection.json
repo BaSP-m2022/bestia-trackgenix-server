@@ -423,7 +423,656 @@
 					"name": "New Request",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get admin by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/6283e0cd916fb0dc8d711e01",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6283e0cd916fb0dc8d711e01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"firstName\": \"Natasha\",\r\n    \"lastName\": \"Romanoff\",\r\n    \"email\": \"blackwidow1234@baidu.com\",\r\n    \"password\": \"LmAt8EsOR\",\r\n    \"active\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Luciaadsadasd\",\r\n    \"lastName\": \"Crack\",\r\n    \"email\": \"avaggers0@baidu.com\",\r\n    \"password\": \"LmAt8EsOR\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/6283e31f8b0b24556005a0c8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6283e31f8b0b24556005a0c8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/6283e31f8b0b24556005a0c8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6283e31f8b0b24556005a0c8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "employees",
+			"item": [
+				{
+					"name": "Get all employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/employees",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/employees/62842ad08deb423ec414a097",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"62842ad08deb423ec414a097"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Sofia\",\r\n    \"lastName\": \"Cervera\",\r\n    \"phone\": \"3416584881\",\r\n    \"email\": \"scervera@gmail.com\",\r\n    \"active\": true\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/employees",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"_id\": \"62842ad08deb423ec414a097\",\r\n        \"firstName\": \"Nicolás\",\r\n        \"lastName\": \"Micheletti\",\r\n        \"phone\": \"3415055215\",\r\n        \"email\": \"nicolasamicheletti@gmail.com\",\r\n        \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/employees/62842ad08deb423ec414a097",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"62842ad08deb423ec414a097"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/employees/62842c878deb423ec414a09b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"62842c878deb423ec414a09b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "super-admins",
+			"item": [
+				{
+					"name": "Post super admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"firstName\": \"Alair\",\r\n    \"lastName\": \"Vaggers\",\r\n    \"email\": \"avaggers0@baidu.com\",\r\n    \"password\": \"LmAt8EsOR\",\r\n    \"active\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/super-admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete super admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/super-admins/628314971f5f583a3cbde1ca",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins",
+								"628314971f5f583a3cbde1ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update super admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"firstName\": \"Juan Roman\",\r\n    \"lastName\": \"Riquelme\",\r\n    \"email\": \"nose@baidu.com\",\r\n    \"password\": \"LmAt8EsOR\",\r\n    \"active\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/super-admins/6283131febac34f6c43b6b3f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins",
+								"6283131febac34f6c43b6b3f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all super admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/super-admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get super admin by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/super-admins/6283131febac34f6c43b6b3f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admins",
+								"6283131febac34f6c43b6b3f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"taskName\": \"Carlods\",\r\n    \"taskDescription\" : \"Hola que tal\",\r\n    \"startDate\" : \"2022-06-16T18:02:23.412Z\",\r\n    \"status\" : \"hdjshasjdask\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tasks/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/tasks/62841f840e5911ed61394c8b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tasks/62841f840e5911ed61394c8b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"62841f840e5911ed61394c8b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/tasks/62841f840e5911ed61394c8b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tasks/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/tasks/62841f840e5911ed61394c8b",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"62841f840e5911ed61394c8b\",\r\n    \"taskName\": \"Carlos asfd\",\r\n    \"taskDescription\": \"Hola que tal\",\r\n    \"startDate\": \"2022-06-16T18:02:23.412Z\",\r\n    \"status\": \"hdjshasjdask\",\r\n    \"assignedEmployee\": [],\r\n    \"createdAt\": \"2022-05-17T22:19:48.489Z\",\r\n    \"updatedAt\": \"2022-05-17T22:19:48.489Z\",\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tasks/62841f840e5911ed61394c8b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"62841f840e5911ed61394c8b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/tasks/62841f840e5911ed61394c8b",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"62841f840e5911ed61394c8b\",\r\n    \"taskName\": \"Carlos asfd\",\r\n    \"taskDescription\": \"Hola que tal\",\r\n    \"startDate\": \"2022-06-16T18:02:23.412Z\",\r\n    \"status\": \"hdjshasjdask\",\r\n    \"assignedEmployee\": [],\r\n    \"createdAt\": \"2022-05-17T22:19:48.489Z\",\r\n    \"updatedAt\": \"2022-05-17T22:19:48.489Z\",\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tasks/62841f840e5911ed61394c8b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"62841f840e5911ed61394c8b"
+							]
+						}
 					},
 					"response": []
 				}
@@ -433,80 +1082,111 @@
 			"name": "time-sheets",
 			"item": [
 				{
-					"name": "Get time-sheets by id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/time-sheets/getById/2",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"time-sheets",
-								"getById",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create a time-sheet",
+					"name": "localhost:3000/time-sheets",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"mññññx\",\r\n    \"day\": \"2022-06-16T18:02:23.412Z\",\r\n    \"role\": \"PM\",\r\n    \"project\": \"ksksksk\",\r\n    \"task\": \"jsjsjsj\",\r\n    \"validated\": true,\r\n    \"projectManager\": \"potato\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:3000/add/time-sheets",
+							"raw": "localhost:3000/time-sheets",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"add",
 								"time-sheets"
 							]
-						}
+						},
+						"description": "Create new time-sheet"
 					},
 					"response": []
 				},
 				{
-					"name": "Edit a time-sheet",
+					"name": "localhost:3000/time-sheets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "PUT",
+						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"mññññx\",\r\n    \"day\": \"2022-06-16T18:02:23.412Z\",\r\n    \"role\": \"PM\",\r\n    \"project\": \"ksksksk\",\r\n    \"task\": \"jsjsjsj\",\r\n    \"validated\": true,\r\n    \"projectManager\": \"potato\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:3000/time-sheets/updated/2",
+							"raw": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"time-sheets",
-								"updated",
-								"2"
+								"62842c85b0fe1abe50009f65"
 							]
-						}
+						},
+						"description": "Get time-sheet by id"
 					},
 					"response": []
 				},
 				{
-					"name": "Delete a time-sheet",
+					"name": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"mññññx\",\r\n    \"day\": \"2022-06-16T18:02:23.412Z\",\r\n    \"role\": \"PM\",\r\n    \"project\": \"ksksksk\",\r\n    \"task\": \"jsjsjsj\",\r\n    \"validated\": true,\r\n    \"projectManager\": \"dinosaur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"time-sheets",
+								"62842c85b0fe1abe50009f65"
+							]
+						},
+						"description": "Update time-sheet by id"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/time-sheets/2",
+							"raw": "localhost:3000/time-sheets/62842c85b0fe1abe50009f65",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"time-sheets",
-								"2"
+								"62842c85b0fe1abe50009f65"
 							]
-						}
+						},
+						"description": "Delete time-sheet by id"
 					},
 					"response": []
 				}
