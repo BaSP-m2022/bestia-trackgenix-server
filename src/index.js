@@ -20,20 +20,13 @@ app.get('/', async (req, res) => {
 });
 
 mongoose.connect(URI)
-<<<<<<< HEAD
-  .then(() => console.log('Database connected'))
-  .catch((error) => console.error(error));
-
-app.listen(port, () => {
-=======
   // eslint-disable-next-line no-console
   .then(() => console.log('Database connected'))
   // eslint-disable-next-line no-console
   .catch((error) => console.error(error));
 
 app.listen(port, () => {
-   // eslint-disable-next-line no-console
->>>>>>> origin/master
+// eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });
 
