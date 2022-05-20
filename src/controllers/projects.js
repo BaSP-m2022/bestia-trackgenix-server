@@ -1,11 +1,4 @@
-// const express = require('express');
-// const fs = require('fs');
-// const router = express.Router();
-// const projects = require('../data/projects.json');
-
 import Project from '../models/Projects';
-
-// const projects = [];
 
 const create = async (req, res) => {
   try {
