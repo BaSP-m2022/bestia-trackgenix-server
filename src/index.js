@@ -2,7 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes';
 
+// mongoose
 const URI = 'mongodb+srv://BaSP:BaSP2022@basp-database.jeirb.mongodb.net/BaSP-database?retryWrites=true&w=majority';
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -24,7 +26,7 @@ mongoose.connect(URI)
   .catch((error) => console.error(error));
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
+   // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });
 
