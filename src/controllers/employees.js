@@ -27,7 +27,7 @@ const createEmployee = async (req, res) => {
 const updateEmployee = async (req, res) => {
   try {
     if (!req.params) {
-      res.status(400).json({
+      return res.status(400).json({
         message: 'missing id parameter',
         data: undefined,
         error: true,
@@ -40,19 +40,19 @@ const updateEmployee = async (req, res) => {
       { new: true },
     );
     if (!result) {
-      res.status(404).json({
+      return res.status(404).json({
         message: 'The employee has not been found',
         data: undefined,
         error: true,
       });
     }
-    res.status(200).json.json({
+    return res.status(200).json({
       message: 'Employee updated',
       data: result,
       error: false,
     });
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       message: 'An error has ocurred',
       data: undefined,
       err: true,
