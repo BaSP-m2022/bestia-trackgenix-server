@@ -1,107 +1,144 @@
-const fs = require('fs');
-const employees = require('../data/employees.json');
+import EmployeeModels from '../models/Employees';
 
-function createEmployee(req, res) {
-  const {
-    id, firstName, lastName, phone, email, password, active,
-  } = req.body;
-  if (id && firstName && lastName && phone && email && password && active) {
-    const newEmployee = {
-      id: parseInt(id, 10),
-      firstName: firstName || '',
-      lastName: lastName || '',
-      phone: phone || '',
-      email: email || '',
-      password: password || '',
-      active: active || '',
-    };
-    employees.push(newEmployee);
-    fs.writeFile('./src/data/employees.json', JSON.stringify(employees), (err) => {
-      if (err) {
-        res.status(404).json({ msg: err });
-      } else {
-        res.status(201).json({ msg: 'Employee created', newEmployee });
-      }
+const createEmployee = async (req, res) => {
+  try {
+    const employee = new EmployeeModels({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phone: req.body.phone,
+      email: req.body.email,
+      active: req.body.active,
     });
-  } else {
-    res.status(404).json({ msg: 'Data missing' });
+    const result = await employee.save();
+    return res.status(201).json({
+      message: 'New employee created',
+      data: result,
+      error: false,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: err,
+      data: undefined,
+      error: true,
+    });
   }
-}
+};
 
-function putEmployeeId(req, res) {
-  const { id } = req.params;
-  const {
-    firstName, lastName, phone, email, password, active,
-  } = req.body;
-  const updatedEmployee = {
-    id: parseInt(id, 10),
-    firstName: firstName || '',
-    lastName: lastName || '',
-    phone: phone || '',
-    email: email || '',
-    password: password || '',
-    active: active || '',
-  };
-  const employeeIndex = employees.findIndex((employee) => employee.id === parseInt(id, 10));
-  if (employeeIndex !== -1) {
-    employees[employeeIndex] = updatedEmployee;
-    fs.writeFileSync('./src/data/employees.json', JSON.stringify(employees));
-    res.status(200).json({ msg: 'Employee updated', updatedEmployee });
-  } else {
-    res.status(404).json({ msg: 'Employee not found' });
-  }
-}
+const updateEmployee = async (req, res) => {
+  try {
+    if (!req.params) {
+      res.status(400).json({
+        message: 'missing id parameter',
+        data: undefined,
+        error: true,
+      });
+    }
 
-function deleteEmployeeId(req, res) {
-  const { id } = req.params;
-  const employeeIndex = employees.findIndex((employee) => employee.id === parseInt(id, 10));
-  if (employeeIndex !== -1) {
-    employees.splice(employeeIndex, 1);
-    fs.writeFileSync('./src/data/employees.jason', JSON.stringify(employees));
-    res.status(200).json({ msg: 'Employee deleted', employees });
-  } else {
-    res.status(404).json({ msg: 'Employee not found' });
+    const result = await EmployeeModels.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true },
+    );
+    if (!result) {
+      res.status(404).json({
+        message: 'The employee has not been found',
+        data: undefined,
+        error: true,
+      });
+    }
+    res.status(200).json.json({
+      message: 'Employee updated',
+      data: result,
+      error: false,
+    });
+  } catch (err) {
+    res.status(400).json({
+      message: 'An error has ocurred',
+      data: undefined,
+      err: true,
+    });
   }
-}
-function getAll(req, res) {
-  res.status(200).json(employees);
-}
+};
 
-function getEmployeeById(req, res) {
-  const { id } = req.params;
-  const employee = employees.find((e) => e.id === id);
-  if (employee) {
-    res.status(200).json(employee);
-  } else {
-    res.status(404).json({ msg: 'Employee not found.' });
+const deleteEmployee = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      res.status(400).json({
+        message: 'missing id parameter',
+        data: undefined,
+        error: true,
+      });
+    }
+    const result = await EmployeeModels.findByIdAndDelete(req.params.id);
+    if (!result) {
+      res.status(400).json({
+        message: 'The employee has not been found',
+        data: undefined,
+        err: true,
+      });
+    }
+    res.status(200).json({
+      message: 'The employee has been succesfully deleted',
+      err: false,
+    });
+  } catch (err) {
+    res.json({
+      message: 'An error has ocurred',
+      data: undefined,
+      err: err.details[0].message,
+    });
   }
-}
+};
 
-function filterByStatus(req, res) {
-  const status = req.query.active;
-  const active = employees.filter((e) => e.active.toString() === status);
-  if (active.length > 0) {
-    res.status(200).json(active);
-  } else {
-    res.status(404).json({ msg: 'Employees not found.' });
+// get all employees
+const getAllEmployees = async (req, res) => {
+  try {
+    const allEmployees = await EmployeeModels.find({});
+    res.status(200).json({
+      message: 'All employees',
+      data: allEmployees,
+      error: false,
+    });
+  } catch (err) {
+    res.status(400).json({
+      message: err,
+      data: undefined,
+      error: true,
+    });
   }
-}
+};
 
-function filterByLName(req, res) {
-  const lName = req.query.lastName;
-  const lastName = employees.filter((e) => e.lastName.toString() === lName);
-  if (lastName.length > 0) {
-    res.status(200).json(lastName);
-  } else {
-    res.status(404).json({ msg: 'Employees not found.' });
+// get employee by id
+const getEmployeeById = async (req, res) => {
+  try {
+    if (req.params.id) {
+      const singleEmployee = await EmployeeModels.findById(req.params.id);
+
+      res.status(200).json({
+        message: 'Employee',
+        data: singleEmployee,
+        error: false,
+      });
+    } else {
+      res.status(400).json({
+        message: 'missing id parameter',
+        data: undefined,
+        error: true,
+      });
+    }
+  } catch (err) {
+    res.status(400).json({
+      message: err,
+      data: undefined,
+      error: true,
+    });
   }
-}
-module.exports = {
-  getAll,
-  deleteEmployeeId,
-  putEmployeeId,
-  createEmployee,
+};
+
+export default {
+  getAllEmployees,
   getEmployeeById,
-  filterByStatus,
-  filterByLName,
+  createEmployee,
+  updateEmployee,
+  deleteEmployee,
 };
