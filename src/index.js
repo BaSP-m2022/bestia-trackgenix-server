@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-// use "import" to import libraries
 import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes';
@@ -22,10 +20,13 @@ app.get('/', async (req, res) => {
 });
 
 mongoose.connect(URI)
+  // eslint-disable-next-line no-console
   .then(() => console.log('Database connected'))
+  // eslint-disable-next-line no-console
   .catch((error) => console.error(error));
 
 app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });
 export default mongoose;
