@@ -30,8 +30,7 @@
     "joi": "^17.6.0",
     "mongoose": "^6.3.3",
     "node.js": "^0.0.1-security",
-    "nodemon": "^2.0.15",
-    "mongodb-memory-server": "^8.5.2"
+    "nodemon": "^2.0.15"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
@@ -42,6 +41,7 @@
     "eslint-plugin-import": "^2.26.0",
     "husky": "^7.0.4",
     "jest": "^28.1.0",
+    "mongodb-memory-server": "^8.5.2",
     "supertest": "^6.2.3"
   }
 }
