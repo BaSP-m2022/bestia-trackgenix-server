@@ -1,0 +1,2 @@
+DATABASE_URL=mongodb+srv://BaSP:BaSP2022@basp-database.jeirb.mongodb.net/BaSP-database?retryWrites=true&w=majority;
+PORT=4000
