@@ -10,12 +10,12 @@ beforeAll(async () => {
 describe('POST /', () => {
   test('response should return a 201 status', async () => {
     const response = await request(app).post('/').send();
+    console.log(response);
     expect(response.status).toBe(201);
-    console.log('todo bien, todo correcto, y yo que me alegro');
   });
   test('response should return false error', async () => {
     const response = await request(app).post('/').send();
+    console.log(response);
     expect(response.error).toBe(false);
-    console.log('todo bien, todo correcto, y yo que me alegro');
   });
 });

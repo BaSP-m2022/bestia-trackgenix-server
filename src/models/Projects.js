@@ -28,10 +28,11 @@ const projectSchema = new Schema(
       type: String,
       required: false,
     },
-    employees: {
-      type: String,
-      required: true,
-    },
+    employees: [{
+      id: { type: mongoose.Schema.Types.ObjectId, required: true },
+      role: { type: String, required: true, enum: ['DEV', 'PM', 'QA', 'TL'] },
+      rate: { type: String, required: true },
+    }],
   },
   { timestamps: true },
 );

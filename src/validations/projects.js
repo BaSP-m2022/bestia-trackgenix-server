@@ -1,6 +1,12 @@
 import Joi from 'joi';
 
 const validationCreateProject = (req, res, next) => {
+  const employeeSchema = Joi.object({
+    id: Joi.number().required(),
+    role: Joi.string().valid('DEV', 'PM', 'QA', 'TL').required(),
+    rate: Joi.string().required(),
+  });
+
   const projectValidation = Joi.object({
     name: Joi.string().min(3).required(),
     description: Joi.string().min(10).max(100),
@@ -8,7 +14,7 @@ const validationCreateProject = (req, res, next) => {
     endDate: Joi.date().greater('now'),
     clientName: Joi.string().min(3).required(),
     state: Joi.string().valid('Active', 'Inactive'),
-    employees: Joi.string().min(3).required(),
+    employees: Joi.array().items(employeeSchema),
   });
   const validation = projectValidation.validate(req.body);
   if (validation.error) {
@@ -22,6 +28,12 @@ const validationCreateProject = (req, res, next) => {
 };
 
 const validationUpdate = (req, res, next) => {
+  const employeeSchema = Joi.object({
+    id: Joi.number().required(),
+    role: Joi.string().valid('DEV', 'PM', 'QA', 'TL').required(),
+    rate: Joi.string().required(),
+  });
+
   const validationUp = Joi.object({
     name: Joi.string().min(3),
     description: Joi.string().min(10).max(100),
@@ -29,7 +41,7 @@ const validationUpdate = (req, res, next) => {
     endDate: Joi.date().greater('now'),
     clientName: Joi.string().min(3),
     state: Joi.string().valid('active', 'inactive'),
-    employees: Joi.string().min(3),
+    employees: Joi.array().items(employeeSchema),
   });
   const validation = validationUp.validate(req.body);
   if (validation.error) {
