@@ -10,7 +10,7 @@ const createProject = async (req, res) => {
       endDate: req.body.endDate,
       clientName: req.body.clientName,
       state: req.body.state,
-      employees: req.body.employees,
+    // employees: req.body.employees,
     });
     const result = await project.save();
     return res.status(201).json({
@@ -19,11 +19,7 @@ const createProject = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
-      message: error.message,
-      data: undefined,
-      error: true,
-    });
+    return res.status(400);
   }
 };
 

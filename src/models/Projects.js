@@ -29,9 +29,13 @@ const projectSchema = new Schema(
       required: false,
     },
     employees: [{
-      id: { type: mongoose.Schema.Types.ObjectId, required: true },
-      role: { type: String, required: true, enum: ['DEV', 'PM', 'QA', 'TL'] },
-      rate: { type: String, required: true },
+      rate: Number,
+      role: String,
+      employeeId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'employee',
+      },
     }],
   },
   { timestamps: true },

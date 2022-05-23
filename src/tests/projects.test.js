@@ -7,14 +7,14 @@ beforeAll(async () => {
   await Projects.collection.insertMany(projectsSeed);
 });
 
-describe('POST /', () => {
+describe('POST /projects', () => {
   test('response should return a 201 status', async () => {
-    const response = await request(app).post('/').send();
+    const response = await request(app).post('/projects').send();
     console.log(response);
     expect(response.status).toBe(201);
   });
   test('response should return false error', async () => {
-    const response = await request(app).post('/').send();
+    const response = await request(app).post('/projects').send();
     console.log(response);
     expect(response.error).toBe(false);
   });
