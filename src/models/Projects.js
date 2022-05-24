@@ -28,15 +28,12 @@ const projectSchema = new Schema(
       type: String,
       required: false,
     },
-    employees: [{
-      rate: Number,
-      role: String,
-      employeeId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'employee',
-      },
-    }],
+    employees: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Employee',
+
+    },
   },
   { timestamps: true },
 );

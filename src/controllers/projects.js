@@ -10,7 +10,7 @@ const createProject = async (req, res) => {
       endDate: req.body.endDate,
       clientName: req.body.clientName,
       state: req.body.state,
-    // employees: req.body.employees,
+      employees: req.body.employees,
     });
     const result = await project.save();
     return res.status(201).json({
@@ -21,28 +21,27 @@ const createProject = async (req, res) => {
   } catch (error) {
     return res.status(400);
   }
+//   } catch (error) {
+//     return res.status(400).json({
+//       message: error,
+//       data: undefined,
+//       error: false,
+//     });
+//   }
 };
 
-// Delete project
-const deleteProject = async (req, res) => {
-  const projectId = req.params.id;
+// Get all projects
+const getAllProjects = async (req, res) => {
   try {
-    if (!projectId) {
-      return res.status(400).send({
-        message: 'Missing ID parameter',
-        data: undefined,
-        error: true,
-      });
-    }
-    const searchProject = await ProjectModel.findByIdAndDelete(projectId);
-    return res.status(204).json({
-      message: 'Project was deleted',
-      data: searchProject,
+    const project = await ProjectModel.find();
+    res.status(200).json({
+      message: 'Projects found',
+      data: project,
       error: false,
     });
   } catch (error) {
-    return res.send({
-      message: error.message,
+    res.status(400).json({
+      message: error,
       data: undefined,
       error: true,
     });
@@ -70,6 +69,32 @@ const getProjectById = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       message: error,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+// Delete project
+const deleteProject = async (req, res) => {
+  const projectId = req.params.id;
+  try {
+    if (!projectId) {
+      return res.status(400).send({
+        message: 'Missing ID parameter',
+        data: undefined,
+        error: true,
+      });
+    }
+    const searchProject = await ProjectModel.findByIdAndDelete(projectId);
+    return res.status(204).json({
+      message: 'Project was deleted',
+      data: searchProject,
+      error: false,
+    });
+  } catch (error) {
+    return res.send({
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -106,24 +131,6 @@ const updateProject = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: error.message,
-      data: undefined,
-      error: true,
-    });
-  }
-};
-
-// Get all projects
-const getAllProjects = async (req, res) => {
-  try {
-    const project = await ProjectModel.find();
-    res.status(200).json({
-      message: 'Projects found',
-      data: project,
-      error: false,
-    });
-  } catch (error) {
-    res.status(400).json({
-      message: error,
       data: undefined,
       error: true,
     });
