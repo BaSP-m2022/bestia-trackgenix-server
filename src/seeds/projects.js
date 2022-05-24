@@ -2,16 +2,18 @@ import mongoose from 'mongoose';
 
 // Generate ObjetId on https://observablehq.com/@hugodf/mongodb-objectid-generator
 export default [{
-//   _id: mongoose.Types.ObjectId('628aba63452c2aa098ff50e2'),
+  id: mongoose.Types.ObjectId('628424c0f931e340851841ff'),
   name: 'Avengers Initiative',
   description: 'The mightiest heroes on the planet',
   startDate: '2022-03-21T18:02:23.412+00:00',
+  endDate: '2022-05-21T18:02:23.412+00:00',
   clientName: 'Nick Fury',
+  state: 'Active',
   employees: [
     {
       role: 'DEV',
       rate: '10',
-      _id: mongoose.Types.ObjectId('6283baefcd44998f831522ab'),
+      id: '62842ad08deb423ec414a097',
     },
   ],
 }];

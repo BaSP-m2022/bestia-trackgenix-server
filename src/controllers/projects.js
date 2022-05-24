@@ -53,27 +53,43 @@ const deleteProject = async (req, res) => {
   }
 };
 
+// Get all projects
+const getAllProjects = async (req, res) => {
+  try {
+    const allProjects = await ProjectModel.find({});
+    return res.status(200).json({
+      message: 'Project found',
+      data: allProjects,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'An error has occurred',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 // Get project by id
 const getProjectById = async (req, res) => {
   try {
-    if (req.params.id) {
-      const project = await ProjectModel.findById(req.params.id);
-      if (!project) {
-        res.status(404).json({
-          message: 'Project not found',
-          data: undefined,
-          error: true,
-        });
-      }
-      res.status(200).json({
-        message: 'Project found',
-        data: project,
-        error: false,
+    const ProjectById = await ProjectModel.findOne(req.param.id);
+    if (!getProjectById) {
+      return res.status(404).json({
+        message: 'Project not found',
+        data: undefined,
+        error: true,
       });
     }
+    return res.status(200).json({
+      message: 'Project found',
+      data: ProjectById,
+      error: false,
+    });
   } catch (error) {
-    res.status(400).json({
-      message: error,
+    return res.status(400).json({
+      message: 'An error has ocurred',
       data: undefined,
       error: true,
     });
@@ -83,52 +99,34 @@ const getProjectById = async (req, res) => {
 // Update project
 const updateProject = async (req, res) => {
   try {
-    if (!req.params) {
-      return res.status(400).json({
-        msg: 'Id not found',
-        data: undefined,
-        error: true,
-      });
-    }
     const result = await ProjectModel.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
     );
+    if (!req.params) {
+      return res.status(404).json({
+        message: 'Project not found',
+        data: req.params.id,
+        error: true,
+      });
+    }
     if (!result) {
       return res.status(404).json({
-        msg: 'Project not found',
-        data: undefined,
+        message: 'Project has not been found',
+        data: `id: ${req.params.id}`,
         error: true,
       });
     }
     return res.status(200).json({
-      msg: 'Project updated',
+      message: 'Project has been successfully updated',
       data: result,
       error: false,
     });
   } catch (error) {
     return res.status(400).json({
-      message: error.message,
-      data: undefined,
-      error: true,
-    });
-  }
-};
-
-// Get all projects
-const getAllProjects = async (req, res) => {
-  try {
-    const project = await ProjectModel.find();
-    res.status(200).json({
-      message: 'Projects found',
-      data: project,
-      error: false,
-    });
-  } catch (error) {
-    res.status(400).json({
-      message: error,
-      data: undefined,
+      message: 'An error has ocurred',
+      data: error.message,
       error: true,
     });
   }

@@ -26,15 +26,14 @@ const projectSchema = new Schema(
     },
     state: {
       type: String,
-      required: false,
+      required: true,
     },
     employees: [{
-      id: { type: mongoose.Schema.Types.ObjectId, required: true },
+      _id: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'employee' },
       role: { type: String, required: true, enum: ['DEV', 'PM', 'QA', 'TL'] },
       rate: { type: String, required: true },
     }],
   },
-  { timestamps: true },
 );
 
 export default mongoose.model('Projects', projectSchema);

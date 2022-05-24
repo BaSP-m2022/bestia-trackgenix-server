@@ -2,26 +2,25 @@ import Joi from 'joi';
 
 const validationCreateProject = (req, res, next) => {
   const employeeSchema = Joi.object({
-    id: Joi.number().required(),
+    id: Joi.string().required(),
     role: Joi.string().valid('DEV', 'PM', 'QA', 'TL').required(),
     rate: Joi.string().required(),
   });
-
   const projectValidation = Joi.object({
-    name: Joi.string().min(3).required(),
+    name: Joi.string().min(3).max(50).required(),
     description: Joi.string().min(10).max(100),
     startDate: Joi.date().less('now').required(),
     endDate: Joi.date().greater('now'),
-    clientName: Joi.string().min(3).required(),
+    clientName: Joi.string().min(3).max(50).required(),
     state: Joi.string().valid('Active', 'Inactive'),
     employees: Joi.array().items(employeeSchema),
   });
   const validation = projectValidation.validate(req.body);
   if (validation.error) {
-    res.status(400).json({
-      message: validation.error.details[0].message,
+    return res.status(400).json({
+      message: 'An error occurred during the validation of the request.',
       data: undefined,
-      error: true,
+      error: validation.error.details[0].message,
     });
   }
   return next();
@@ -29,11 +28,10 @@ const validationCreateProject = (req, res, next) => {
 
 const validationUpdate = (req, res, next) => {
   const employeeSchema = Joi.object({
-    id: Joi.number().required(),
+    id: Joi.string().required(),
     role: Joi.string().valid('DEV', 'PM', 'QA', 'TL').required(),
     rate: Joi.string().required(),
   });
-
   const validationUp = Joi.object({
     name: Joi.string().min(3),
     description: Joi.string().min(10).max(100),
@@ -45,10 +43,10 @@ const validationUpdate = (req, res, next) => {
   });
   const validation = validationUp.validate(req.body);
   if (validation.error) {
-    res.status(400).json({
-      message: validation.error.details[0].message,
+    return res.status(400).json({
+      message: 'An error occurred during the validation of the request.',
       data: undefined,
-      error: true,
+      error: validation.error.details[0].message,
     });
   }
   return next();
