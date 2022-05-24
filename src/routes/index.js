@@ -4,8 +4,8 @@ import taskRouter from './tasks';
 import superAdminsRouter from './super-admins';
 import adminRoutes from './admins';
 import timeSheetsRouter from './time-sheets';
-import projectRouter from './projects';
 import employeeRoutes from './employees';
+import projectRouter from './projects';
 
 const router = express.Router();
 
