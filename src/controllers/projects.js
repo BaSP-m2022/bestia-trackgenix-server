@@ -21,13 +21,6 @@ const createProject = async (req, res) => {
   } catch (error) {
     return res.status(400);
   }
-//   } catch (error) {
-//     return res.status(400).json({
-//       message: error.message,
-//       data: undefined,
-//       error: false,
-//     });
-//   }
 };
 
 // Get all projects
