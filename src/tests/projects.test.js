@@ -21,7 +21,7 @@ describe('Test GET /', () => {
   });
   test('Response should return at least one project', async () => {
     const response = await request(app).get('/projects').send();
-    expect(response.body.data).toBeGreaterThan(0);
+    expect(response.body.data).not.toBe(null);
   });
   test('Response should return the message: Project found', async () => {
     const response = await request(app).get('/projects/628424c0f931e340851841ff').send();
