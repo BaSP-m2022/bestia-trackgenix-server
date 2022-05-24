@@ -31,7 +31,7 @@ const projectSchema = new Schema(
     employees: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'Employee',
+      ref: 'employee',
 
     },
   },

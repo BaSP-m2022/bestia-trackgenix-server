@@ -23,7 +23,7 @@ const createProject = async (req, res) => {
   }
 //   } catch (error) {
 //     return res.status(400).json({
-//       message: error,
+//       message: error.message,
 //       data: undefined,
 //       error: false,
 //     });
@@ -41,7 +41,7 @@ const getAllProjects = async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
-      message: error,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -68,7 +68,7 @@ const getProjectById = async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({
-      message: error,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -87,13 +87,19 @@ const deleteProject = async (req, res) => {
       });
     }
     const searchProject = await ProjectModel.findByIdAndDelete(projectId);
-    return res.status(204).json({
-      message: 'Project was deleted',
+    if (!searchProject) {
+      return res.status(404).json({
+        message: `The project with id ${req.params.id} has not been found`,
+        data: undefined,
+        error: true,
+      });
+    } return res.status(204).json({
+      message: 'Project deleted successfully.',
       data: searchProject,
       error: false,
     });
   } catch (error) {
-    return res.send({
+    return res.status(400).json({
       message: error.message,
       data: undefined,
       error: true,
@@ -106,7 +112,7 @@ const updateProject = async (req, res) => {
   try {
     if (!req.params) {
       return res.status(400).json({
-        msg: 'Id not found',
+        message: 'Id not found',
         data: undefined,
         error: true,
       });
@@ -118,7 +124,7 @@ const updateProject = async (req, res) => {
     );
     if (!result) {
       return res.status(404).json({
-        msg: 'Project not found',
+        message: 'Project not found',
         data: undefined,
         error: true,
       });
