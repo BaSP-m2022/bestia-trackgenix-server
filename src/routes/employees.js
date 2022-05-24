@@ -4,7 +4,7 @@ import employeeValidation from '../validations/employees';
 
 const router = express.Router();
 
-// localhost:3000/employee/
+// localhost:4000/employee/
 router.get('/', employeeController.getAllEmployees);
 router.post('/', employeeValidation.createEmployeeValidation, employeeController.createEmployee);
 router.get('/:id', employeeController.getEmployeeById);

@@ -3,11 +3,17 @@ import EmployeeModels from '../models/Employees';
 const createEmployee = async (req, res) => {
   try {
     const employee = new EmployeeModels({
-      firstName: req.body.firstName,
+      name: req.body.name,
       lastName: req.body.lastName,
-      phone: req.body.phone,
       email: req.body.email,
-      active: req.body.active,
+      password: req.body.password,
+      dni: req.body.dni,
+      address: req.body.address,
+      city: req.body.city,
+      zip: req.body.zip,
+      status: true,
+      role: req.body.role,
+      projects: req.body.projects,
     });
     const result = await employee.save();
     return res.status(201).json({
@@ -27,7 +33,7 @@ const createEmployee = async (req, res) => {
 const updateEmployee = async (req, res) => {
   try {
     if (!req.params) {
-      res.status(400).json({
+      return res.status(400).json({
         message: 'missing id parameter',
         data: undefined,
         error: true,
@@ -40,19 +46,19 @@ const updateEmployee = async (req, res) => {
       { new: true },
     );
     if (!result) {
-      res.status(404).json({
+      return res.status(404).json({
         message: 'The employee has not been found',
         data: undefined,
         error: true,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       message: 'Employee updated',
       data: result,
       error: false,
     });
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       message: 'An error has ocurred',
       data: undefined,
       err: true,
@@ -63,7 +69,7 @@ const updateEmployee = async (req, res) => {
 const deleteEmployee = async (req, res) => {
   try {
     if (!req.params.id) {
-      res.status(400).json({
+      return res.status(400).json({
         message: 'missing id parameter',
         data: undefined,
         error: true,
@@ -71,18 +77,19 @@ const deleteEmployee = async (req, res) => {
     }
     const result = await EmployeeModels.findByIdAndDelete(req.params.id);
     if (!result) {
-      res.status(400).json({
+      return res.status(400).json({
         message: 'The employee has not been found',
         data: undefined,
         err: true,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       message: 'The employee has been succesfully deleted',
       err: false,
+      data: result,
     });
   } catch (err) {
-    res.json({
+    return res.json({
       message: 'An error has ocurred',
       data: undefined,
       err: err.details[0].message,
@@ -93,14 +100,14 @@ const deleteEmployee = async (req, res) => {
 // get all employees
 const getAllEmployees = async (req, res) => {
   try {
-    const allEmployees = await EmployeeModels.find({});
-    res.status(200).json({
+    const allEmployees = await EmployeeModels.find().populate('projects');
+    return res.status(200).json({
       message: 'All employees',
       data: allEmployees,
       error: false,
     });
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       message: err,
       data: undefined,
       error: true,
@@ -112,7 +119,7 @@ const getAllEmployees = async (req, res) => {
 const getEmployeeById = async (req, res) => {
   try {
     if (req.params.id) {
-      const singleEmployee = await EmployeeModels.findById(req.params.id);
+      const singleEmployee = await EmployeeModels.findById(req.params.id).populate('projects');
 
       res.status(200).json({
         message: 'Employee',
