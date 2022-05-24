@@ -99,7 +99,7 @@ const getProjectById = async (req, res) => {
 // Update project
 const updateProject = async (req, res) => {
   try {
-    const result = await ProjectModel.findByIdAndUpdate(
+    const projectUpdated = await ProjectModel.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
@@ -111,7 +111,7 @@ const updateProject = async (req, res) => {
         error: true,
       });
     }
-    if (!result) {
+    if (!projectUpdated) {
       return res.status(404).json({
         message: 'Project has not been found',
         data: `id: ${req.params.id}`,
@@ -120,7 +120,7 @@ const updateProject = async (req, res) => {
     }
     return res.status(200).json({
       message: 'Project has been successfully updated',
-      data: result,
+      data: projectUpdated,
       error: false,
     });
   } catch (error) {

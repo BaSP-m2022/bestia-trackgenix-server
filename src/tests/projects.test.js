@@ -43,7 +43,7 @@ describe('Test PUT /', () => {
         {
           role: 'DEV',
           rate: '10',
-          _id: '62842ad08deb423ec414a097',
+          id: '62842ad08deb423ec414a097',
         },
       ],
     });
@@ -51,7 +51,7 @@ describe('Test PUT /', () => {
   });
 
   test('Response should return error false', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
+    const response = await request(app).put('/628424c0f931e340851841ff').send({
       name: 'The Justice League',
       description: 'The mightiest heroes on the planet',
       startDate: '2022-03-21T18:02:23.412+00:00',
@@ -69,7 +69,7 @@ describe('Test PUT /', () => {
   });
 
   test('Response should return message: Project has been successfully updated', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
+    const response = await request(app).put('/628424c0f931e340851841ff').send({
       name: 'The Justice League',
       description: 'The mightiest heroes on the planet',
       startDate: '2022-03-21T18:02:23.412+00:00',
@@ -157,8 +157,7 @@ describe('Test PUT /', () => {
   });
 
   test('Project should not be found', async () => {
-    const wrongProjectId = 'p6283baefcd44998f831522aa';
-    const response = await request(app).put(`/projects/${wrongProjectId}`).send({
+    const response = await request(app).put('/p6283baefcd44998f831522aa').send({
       name: 'The Justice League',
       description: 'The mightiest heroes on the planet',
       startDate: '2022-03-21T18:02:23.412+00:00',
