@@ -49,7 +49,7 @@ const getAdminById = async (req, res) => {
     const admin = await AdminModel.findById(req.params.id);
     if (admin) {
       res.status(200).json({
-        msg: `The Admin with id ${req.params.id} is:`,
+        msg: `The admin with id ${req.params.id} is:`,
         data: admin,
         error: false,
       });
