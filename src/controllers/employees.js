@@ -3,17 +3,12 @@ import EmployeeModels from '../models/Employees';
 const createEmployee = async (req, res) => {
   try {
     const employee = new EmployeeModels({
-      name: req.body.name,
+      firstName: req.body.name,
       lastName: req.body.lastName,
+      phone: req.body.phone,
       email: req.body.email,
       password: req.body.password,
-      dni: req.body.dni,
-      address: req.body.address,
-      city: req.body.city,
-      zip: req.body.zip,
-      status: true,
-      role: req.body.role,
-      projects: req.body.projects,
+      active: req.body.active,
     });
     const result = await employee.save();
     return res.status(201).json({
@@ -100,7 +95,7 @@ const deleteEmployee = async (req, res) => {
 // get all employees
 const getAllEmployees = async (req, res) => {
   try {
-    const allEmployees = await EmployeeModels.find().populate('projects');
+    const allEmployees = await EmployeeModels.find();
     return res.status(200).json({
       message: 'All employees',
       data: allEmployees,
@@ -119,7 +114,7 @@ const getAllEmployees = async (req, res) => {
 const getEmployeeById = async (req, res) => {
   try {
     if (req.params.id) {
-      const singleEmployee = await EmployeeModels.findById(req.params.id).populate('projects');
+      const singleEmployee = await EmployeeModels.findById(req.params.id);
 
       res.status(200).json({
         message: 'Employee',
