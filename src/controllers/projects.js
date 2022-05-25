@@ -19,11 +19,7 @@ const createProject = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
-      message: error.message,
-      data: undefined,
-      error: true,
-    });
+    return res.status(400);
   }
 };
 
@@ -99,34 +95,34 @@ const getProjectById = async (req, res) => {
 // Update project
 const updateProject = async (req, res) => {
   try {
-    const projectUpdated = await ProjectModel.findByIdAndUpdate(
+    if (!req.params) {
+      return res.status(400).json({
+        message: 'Id not found',
+        data: undefined,
+        error: true,
+      });
+    }
+    const result = await ProjectModel.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
     );
-    if (!req.params) {
+    if (!result) {
       return res.status(404).json({
         message: 'Project not found',
-        data: req.params.id,
-        error: true,
-      });
-    }
-    if (!projectUpdated) {
-      return res.status(404).json({
-        message: 'Project has not been found',
-        data: `id: ${req.params.id}`,
+        data: undefined,
         error: true,
       });
     }
     return res.status(200).json({
-      message: 'Project has been successfully updated',
-      data: projectUpdated,
+      msg: 'Project updated',
+      data: result,
       error: false,
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error.message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
