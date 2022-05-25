@@ -3,8 +3,6 @@ import app from '../app';
 import Tasks from '../models/Tasks';
 import taskSeed from '../seeds/tasks';
 
-let taskId;
-
 beforeAll(async () => {
   await Tasks.collection.insertMany(taskSeed);
 });
