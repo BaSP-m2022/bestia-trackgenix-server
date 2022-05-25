@@ -84,11 +84,7 @@ const deleteSuperAdmin = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
-      message: error,
-      data: undefined,
-      error: true,
-    });
+    return res.status(400)
   }
 };
 const updateSuperAdmin = async (req, res) => {
@@ -104,11 +100,7 @@ const updateSuperAdmin = async (req, res) => {
         active: req.body.active,
       });
       const result = await superAdmin.save();
-      return res.status(201).json({
-        message: 'Super Admin updated successfully',
-        data: result,
-        error: false,
-      });
+      return res.status(201)
     }
     return res.status(404).json({
       message: `Super Admin with id: ${req.params.id} not found.`,
