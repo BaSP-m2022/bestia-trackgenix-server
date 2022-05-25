@@ -1,6 +1,6 @@
 import request from 'supertest';
-import app from '../app';
 import mongoose from 'mongoose';
+import app from '../app';
 
 import ProjectsModel from '../models/Projects';
 import EmployeesModel from '../models/Employees';
