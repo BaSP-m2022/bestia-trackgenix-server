@@ -3,7 +3,7 @@ import EmployeeModels from '../models/Employees';
 const createEmployee = async (req, res) => {
   try {
     const employee = new EmployeeModels({
-      firstName: req.body.name,
+      firstName: req.body.firstName,
       lastName: req.body.lastName,
       phone: req.body.phone,
       email: req.body.email,
@@ -16,9 +16,9 @@ const createEmployee = async (req, res) => {
       data: result,
       error: false,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(400).json({
-      message: err,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -52,11 +52,11 @@ const updateEmployee = async (req, res) => {
       data: result,
       error: false,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(400).json({
       message: 'An error has ocurred',
       data: undefined,
-      err: true,
+      error: true,
     });
   }
 };
@@ -64,30 +64,30 @@ const updateEmployee = async (req, res) => {
 const deleteEmployee = async (req, res) => {
   try {
     if (!req.params.id) {
-      return res.status(400).json({
-        message: 'missing id parameter',
+      return res.status(404).json({
+        message: 'Missing id parameter',
         data: undefined,
         error: true,
       });
     }
     const result = await EmployeeModels.findByIdAndDelete(req.params.id);
     if (!result) {
-      return res.status(400).json({
+      return res.status(404).json({
         message: 'The employee has not been found',
         data: undefined,
-        err: true,
+        error: true,
       });
     }
-    return res.status(200).json({
+    return res.status(204).json({
       message: 'The employee has been succesfully deleted',
-      err: false,
-      data: result,
-    });
-  } catch (err) {
-    return res.json({
-      message: 'An error has ocurred',
       data: undefined,
-      err: err.details[0].message,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -101,9 +101,9 @@ const getAllEmployees = async (req, res) => {
       data: allEmployees,
       error: false,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(400).json({
-      message: err,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -128,9 +128,9 @@ const getEmployeeById = async (req, res) => {
         error: true,
       });
     }
-  } catch (err) {
+  } catch (error) {
     res.status(400).json({
-      message: err,
+      message: error.message,
       data: undefined,
       error: true,
     });

@@ -1,11 +1,10 @@
 import Joi from 'joi';
-import employeesModels from '../models/Employees';
 
 const validateEmployee = async (req, res, next) => {
   const employee = Joi.object({
-    firstName: Joi.string().min(3).max(30).regex(/^[a-zA-Z]+$/)
+    firstName: Joi.string().min(3).max(30)
       .required(),
-    lastName: Joi.string().min(3).max(30).regex(/^[a-zA-Z]+$/)
+    lastName: Joi.string().min(3).max(30)
       .required(),
     phone: Joi.number().required(),
     email: Joi.string().email().required(),
@@ -15,21 +14,17 @@ const validateEmployee = async (req, res, next) => {
   const validate = employee.validate(req.body);
   if (validate.error) {
     return res.status(400).json({
-      error: validate.error.details[0].message,
-    });
-  }
-  const emailExist = await employeesModels.findOne({ email: req.body.email });
-  if (emailExist) {
-    return res.status(400).json({
-      msg: 'Email already exist',
+      message: validate.error.details[0].message,
+      data: undefined,
+      error: true,
     });
   }
   return next();
 };
 const validateMod = async (req, res, next) => {
   const employee = Joi.object({
-    firstName: Joi.string().min(3).max(30).regex(/^[a-zA-Z]+$/),
-    lastName: Joi.string().min(3).max(30).regex(/^[a-zA-Z]+$/),
+    firstName: Joi.string().min(3).max(30),
+    lastName: Joi.string().min(3).max(30),
     phone: Joi.number(),
     email: Joi.string().email(),
     password: Joi.string().min(3).max(30),
@@ -38,13 +33,9 @@ const validateMod = async (req, res, next) => {
   const validate = employee.validate(req.body);
   if (validate.error) {
     return res.status(400).json({
-      error: validate.error.details[0].message,
-    });
-  }
-  const emailExist = await employeesModels.findOne({ email: req.body.email });
-  if (emailExist) {
-    return res.status(400).json({
-      msg: 'Email already exist',
+      message: validate.error.details[0].message,
+      data: undefined,
+      error: true,
     });
   }
   return next();

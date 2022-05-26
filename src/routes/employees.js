@@ -6,7 +6,7 @@ const router = express.Router();
 
 // localhost:4000/employee/
 router.get('/', employeeController.getAllEmployees);
-router.post('/', employeeValidation.validateEmployee, employeeController.createEmployee);
+router.post('/create', employeeValidation.validateEmployee, employeeController.createEmployee);
 router.get('/:id', employeeController.getEmployeeById);
 router.put('/:id', employeeValidation.validateMod, employeeController.updateEmployee);
 router.delete('/:id', employeeController.deleteEmployee);

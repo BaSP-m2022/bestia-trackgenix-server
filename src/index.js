@@ -5,7 +5,7 @@ import app from './app';
 dotenv.config();
 
 const URI = process.env.DATABASE_URL;
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 mongoose.connect(URI)
   // eslint-disable-next-line no-console
