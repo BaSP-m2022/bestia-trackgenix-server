@@ -26,8 +26,9 @@ const projectSchema = new mongoose.Schema({
     required: false,
   },
   employees: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: 'employee',
   },
 });
 
